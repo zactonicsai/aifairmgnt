@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing and Sales for Fair — AI Solutions Playbook</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 50:'#f0f4f8', 100:'#d9e2ec', 200:'#bcccdc', 300:'#9fb3c8', 400:'#7b8eb5', 500:'#516690', 600:'#3e4f6f', 700:'#2d3a52', 800:'#1c2638', 900:'#0f1724' },
+            gold: { 50:'#fff9eb', 100:'#fef0cd', 200:'#fde29b', 300:'#fcd05e', 400:'#f7b731', 500:'#e59e0b', 600:'#c47f07', 700:'#9a6209', 800:'#7d4f10', 900:'#684213' },
+            rust: { 400:'#e8734a', 500:'#d4572a', 600:'#b5441e' },
+            sage: { 400:'#6db58a', 500:'#4a9e6b', 600:'#3a7d54' },
+          },
+          fontFamily: {
+            display: ['DM Serif Display', 'Georgia', 'serif'],
+            body: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: #0f1724; }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .hero-gradient {
+      background: radial-gradient(ellipse at 30% 20%, rgba(247,183,49,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 80%, rgba(212,87,42,0.08) 0%, transparent 50%),
+                  linear-gradient(180deg, #0f1724 0%, #1c2638 100%);
+    }
+
+    .section-card {
+      background: linear-gradient(135deg, rgba(28,38,56,0.95) 0%, rgba(15,23,36,0.98) 100%);
+      border: 1px solid rgba(159,179,200,0.08);
+      backdrop-filter: blur(20px);
+    }
+
+    /* Marketing Checklist Styles */
+    .checklist-row {
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(159,179,200,0.1);
+    }
+    .checklist-row:hover {
+      background: rgba(247,183,49,0.03);
+    }
+    .checkbox-custom {
+      appearance: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 2px solid #516690;
+      border-radius: 4px;
+      display: grid;
+      place-content: center;
+      transition: all 0.2s;
+    }
+    .checkbox-custom::before {
+      content: "";
+      width: 0.65rem;
+      height: 0.65rem;
+      transform: scale(0);
+      background-color: #f7b731;
+      transform-origin: center;
+      transition: 120ms transform ease-in-out;
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    }
+    .checkbox-custom:checked {
+      border-color: #f7b731;
+    }
+    .checkbox-custom:checked::before {
+      transform: scale(1);
+    }
+
+    /* Modal Styles */
+    dialog::backdrop {
+      background: rgba(15, 23, 36, 0.85);
+      backdrop-filter: blur(8px);
+    }
+    dialog[open] {
+      animation: zoomIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .use-case-card {
+      background: linear-gradient(160deg, rgba(28,38,56,0.7) 0%, rgba(15,23,36,0.9) 100%);
+      border: 1px solid rgba(159,179,200,0.06);
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .use-case-card:hover {
+      border-color: rgba(247,183,49,0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(247,183,49,0.1);
+    }
+
+    .pain-card {
+      background: linear-gradient(160deg, rgba(212,87,42,0.06) 0%, rgba(28,38,56,0.8) 100%);
+      border: 1px solid rgba(212,87,42,0.12);
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .pain-card:hover {
+      border-color: rgba(212,87,42,0.3);
+      box-shadow: 0 8px 32px rgba(212,87,42,0.08);
+    }
+
+    .toc-link {
+      transition: all 0.3s ease;
+      border-left: 2px solid transparent;
+    }
+    .toc-link:hover, .toc-link.active {
+      border-left-color: #f7b731;
+      color: #f7b731;
+      padding-left: 1rem;
+      background: rgba(247,183,49,0.04);
+    }
+
+    .expand-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+      opacity: 0;
+    }
+    .expand-content.open {
+      max-height: 2000px;
+      opacity: 1;
+    }
+
+    .tag-pill {
+      background: rgba(247,183,49,0.1);
+      border: 1px solid rgba(247,183,49,0.2);
+      color: #fcd05e;
+    }
+
+    .impact-badge {
+      background: rgba(74,158,107,0.12);
+      border: 1px solid rgba(74,158,107,0.25);
+      color: #6db58a;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, rgba(247,183,49,0.08) 0%, rgba(28,38,56,0.6) 100%);
+      border: 1px solid rgba(247,183,49,0.15);
+    }
+
+    .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    .counter { font-variant-numeric: tabular-nums; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .float-anim { animation: float 6s ease-in-out infinite; }
+
+    @keyframes pulse-ring {
+      0% { transform: scale(0.9); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    .pulse-ring::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(247,183,49,0.4);
+      animation: pulse-ring 2s ease-out infinite;
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, #f7b731, #d4572a);
+      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0f1724; }
+    ::-webkit-scrollbar-thumb { background: #2d3a52; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3e4f6f; }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #f7b731, #e59e0b);
+      color: #0f1724;
+      transition: all 0.3s ease;
+    }
+    .btn-gold:hover {
+      box-shadow: 0 4px 20px rgba(247,183,49,0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(247,183,49,0.3);
+      color: #fcd05e;
+      transition: all 0.3s ease;
+    }
+    .btn-outline:hover {
+      background: rgba(247,183,49,0.08);
+      border-color: rgba(247,183,49,0.6);
+    }
+  </style>
+</head>
+<body class="text-navy-100 min-h-screen">
+
+  <div id="mobileSidebar" class="mobile-menu fixed inset-0 z-50 lg:hidden">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+    <nav class="relative w-80 max-w-[85vw] h-full bg-navy-900 border-r border-navy-700/50 overflow-y-auto p-6">
+      <div class="flex items-center justify-between mb-8">
+        <span class="font-display text-gold-400 text-xl">Navigation</span>
+        <button onclick="toggleMobileMenu()" class="text-navy-300 hover:text-white p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="mobileTocContent" class="space-y-1"></div>
+    </nav>
+  </div>
+
+  <header id="stickyHeader" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" style="background:transparent;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <button onclick="toggleMobileMenu()" class="lg:hidden text-navy-300 hover:text-gold-400 p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-gold-500/20 flex items-center justify-center">
+            <span class="text-gold-400 text-sm">★</span>
+          </div>
+          <span class="font-display text-white text-sm sm:text-base hidden sm:block">Marketing and Sales for Fair</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button onclick="scrollToSection('marketing-checklist')" class="btn-outline text-xs sm:text-sm px-3 py-1.5 rounded-lg font-medium">Marketing Tools</button>
+        <button onclick="scrollToSection('roadmap')" class="btn-gold text-xs sm:text-sm px-3 py-1.5 rounded-lg font-semibold">Get Started</button>
+      </div>
+    </div>
+    <div class="h-px bg-gradient-to-r from-transparent via-navy-600/50 to-transparent"></div>
+  </header>
+
+  <section class="hero-gradient relative min-h-[90vh] sm:min-h-screen flex items-center overflow-hidden">
+    <div class="absolute top-20 right-10 w-72 h-72 bg-gold-500/5 rounded-full blur-3xl float-anim"></div>
+    <div class="absolute bottom-20 left-10 w-96 h-96 bg-rust-500/5 rounded-full blur-3xl float-anim" style="animation-delay:-3s"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 pt-24 pb-16">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 mb-6">
+            <span class="w-2 h-2 rounded-full bg-gold-400 relative pulse-ring"></span>
+            <span class="text-gold-300 text-xs sm:text-sm font-medium tracking-wide uppercase">AI-Powered Fair Operations</span>
+          </div>
+
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.1] mb-6">
+            Marketing and Sales<br>
+            <span class="text-gold-400">For Fair</span><br>
+            <span class="text-navy-300 text-3xl sm:text-4xl lg:text-5xl">AI Solutions Playbook</span>
+          </h1>
+
+          <p class="text-navy-200 text-base sm:text-lg leading-relaxed max-w-xl mb-8">
+            A comprehensive guide to transforming fair management with artificial intelligence — from vendor operations and guest experience to safety, revenue optimization, and agricultural competitions in Montgomery, Marketing and Sales.
+          </p>
+
+          <div class="flex flex-wrap gap-3 mb-10">
+            <button onclick="scrollToSection('marketing-checklist')" class="btn-gold px-6 py-3 rounded-xl font-semibold text-sm sm:text-base">
+              Start: Marketing Checklist
+            </button>
+            <button onclick="scrollToSection('toc')" class="btn-outline px-6 py-3 rounded-xl font-medium text-sm sm:text-base">
+              Table of Contents
+            </button>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4 max-w-md">
+            <div class="stat-card rounded-xl p-3 text-center">
+              <div class="font-display text-gold-400 text-2xl sm:text-3xl counter" data-target="42">0</div>
+              <div class="text-navy-300 text-[10px] sm:text-xs uppercase tracking-wider mt-1">AI Use Cases</div>
+            </div>
+            <div class="stat-card rounded-xl p-3 text-center">
+              <div class="font-display text-rust-400 text-2xl sm:text-3xl counter" data-target="15">0</div>
+              <div class="text-navy-300 text-[10px] sm:text-xs uppercase tracking-wider mt-1">Pain Points</div>
+            </div>
+            <div class="stat-card rounded-xl p-3 text-center">
+              <div class="font-display text-sage-400 text-2xl sm:text-3xl counter" data-target="10">0</div>
+              <div class="text-navy-300 text-[10px] sm:text-xs uppercase tracking-wider mt-1">Departments</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden lg:block">
+          <div class="section-card rounded-2xl p-8 space-y-6">
+            <h3 class="font-display text-white text-xl mb-2">Quick Impact Projections</h3>
+            <div class="space-y-5">
+              <div>
+                <div class="flex justify-between text-sm mb-2"><span class="text-navy-200">Revenue Increase</span><span class="text-gold-400 font-semibold">12–20%</span></div>
+                <div class="h-2 bg-navy-800 rounded-full overflow-hidden"><div class="progress-bar h-full rounded-full" data-width="75" style="width:0%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-2"><span class="text-navy-200">Cost Reduction</span><span class="text-gold-400 font-semibold">20–30%</span></div>
+                <div class="h-2 bg-navy-800 rounded-full overflow-hidden"><div class="progress-bar h-full rounded-full" data-width="65" style="width:0%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-2"><span class="text-navy-200">Safety Improvement</span><span class="text-gold-400 font-semibold">35–50%</span></div>
+                <div class="h-2 bg-navy-800 rounded-full overflow-hidden"><div class="progress-bar h-full rounded-full" data-width="82" style="width:0%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-2"><span class="text-navy-200">Admin Time Saved</span><span class="text-gold-400 font-semibold">50–70%</span></div>
+                <div class="h-2 bg-navy-800 rounded-full overflow-hidden"><div class="progress-bar h-full rounded-full" data-width="88" style="width:0%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-2"><span class="text-navy-200">Guest Satisfaction</span><span class="text-gold-400 font-semibold">25–40%</span></div>
+                <div class="h-2 bg-navy-800 rounded-full overflow-hidden"><div class="progress-bar h-full rounded-full" data-width="70" style="width:0%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-2"><span class="text-navy-200">Marketing Efficiency</span><span class="text-gold-400 font-semibold">40–60%</span></div>
+                <div class="h-2 bg-navy-800 rounded-full overflow-hidden"><div class="progress-bar h-full rounded-full" data-width="78" style="width:0%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-navy-400">
+      <span class="text-xs uppercase tracking-widest">Scroll</span>
+      <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+  </section>
+
+  <section id="marketing-checklist" class="py-16 bg-navy-800/50 border-y border-navy-700/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="fade-in mb-10">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="text-gold-400 text-xs uppercase tracking-[0.2em] font-semibold">For Marketing & Sales</span>
+          <div class="h-px flex-1 bg-gradient-to-l from-gold-500/40 to-transparent"></div>
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl text-white mb-4">AI Checklist: Marketing & Sales Director</h2>
+        <p class="text-navy-300 max-w-3xl">Enhance your daily workflow. Identify key activities where AI tools can immediately increase sponsorship revenue, ticket sales, and team efficiency.</p>
+      </div>
+
+      <div class="section-card rounded-2xl overflow-hidden shadow-2xl">
+        <div class="bg-navy-900/50 p-4 sm:p-6 border-b border-navy-700 flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-gold-500/10 flex items-center justify-center text-gold-400 text-xl">🚀</div>
+            <div>
+              <h3 class="font-display text-lg text-white">Operational Enhancement Checklist</h3>
+              <p class="text-xs text-navy-400">Tick items as you deploy solutions</p>
+            </div>
+          </div>
+          <div class="text-right hidden sm:block">
+            <div class="text-xs text-navy-400 uppercase tracking-wider mb-1">Potential Time Saved</div>
+            <div class="text-gold-400 font-display text-xl">15–20 Hours/Week</div>
+          </div>
+        </div>
+
+        <div id="marketingChecklistContainer" class="divide-y divide-navy-700/30">
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="toc" class="py-16 sm:py-24 bg-navy-900/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="fade-in">
+        <h2 class="font-display text-3xl sm:text-4xl text-white mb-2">Table of Contents</h2>
+        <p class="text-navy-300 mb-10 max-w-2xl">Navigate the complete AI solutions playbook for every aspect of fair operations.</p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" id="tocGrid">
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6">
+
+    <section id="use-cases" class="py-16 sm:py-24">
+      <div class="fade-in">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="h-px flex-1 bg-gradient-to-r from-gold-500/40 to-transparent"></div>
+          <span class="text-gold-400 text-xs uppercase tracking-[0.2em] font-semibold">AI Use Cases</span>
+          <div class="h-px flex-1 bg-gradient-to-l from-gold-500/40 to-transparent"></div>
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white text-center mb-4">AI-Powered Fair Operations</h2>
+        <p class="text-navy-300 text-center max-w-3xl mx-auto mb-12">Comprehensive AI solutions organized by operational department, each with practical examples for the Marketing and Sales for Fair context.</p>
+      </div>
+
+      <div id="useCaseSections" class="space-y-12">
+        </div>
+    </section>
+
+    <section id="pain-points" class="py-16 sm:py-24">
+      <div class="fade-in">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="h-px flex-1 bg-gradient-to-r from-rust-500/40 to-transparent"></div>
+          <span class="text-rust-400 text-xs uppercase tracking-[0.2em] font-semibold">Critical Challenges</span>
+          <div class="h-px flex-1 bg-gradient-to-l from-rust-500/40 to-transparent"></div>
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white text-center mb-4">Key Pain Points</h2>
+        <p class="text-navy-300 text-center max-w-3xl mx-auto mb-12">The most pressing operational challenges facing fair administrators — and how AI directly addresses each one.</p>
+      </div>
+
+      <div id="painPointsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        </div>
+    </section>
+
+    <section id="productivity" class="py-16 sm:py-24">
+      <div class="fade-in">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="h-px flex-1 bg-gradient-to-r from-sage-500/40 to-transparent"></div>
+          <span class="text-sage-400 text-xs uppercase tracking-[0.2em] font-semibold">Productivity</span>
+          <div class="h-px flex-1 bg-gradient-to-l from-sage-500/40 to-transparent"></div>
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white text-center mb-4">AI Productivity Enhancements</h2>
+        <p class="text-navy-300 text-center max-w-3xl mx-auto mb-12">Day-to-day administrative and business productivity gains from AI integration.</p>
+      </div>
+
+      <div id="productivityGrid" class="grid sm:grid-cols-2 gap-5">
+        </div>
+    </section>
+
+    <section id="roadmap" class="py-16 sm:py-24">
+      <div class="fade-in">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="h-px flex-1 bg-gradient-to-r from-gold-500/40 to-transparent"></div>
+          <span class="text-gold-400 text-xs uppercase tracking-[0.2em] font-semibold">Roadmap</span>
+          <div class="h-px flex-1 bg-gradient-to-l from-gold-500/40 to-transparent"></div>
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white text-center mb-4">Implementation Roadmap</h2>
+        <p class="text-navy-300 text-center max-w-3xl mx-auto mb-12">A phased approach to AI adoption aligned with the Fair's operational calendar.</p>
+      </div>
+
+      <div id="roadmapTimeline" class="space-y-8">
+        </div>
+    </section>
+
+    <section id="services" class="py-16 sm:py-24">
+      <div class="fade-in">
+        <div class="section-card rounded-2xl p-8 sm:p-12">
+          <h2 class="font-display text-2xl sm:text-3xl text-white mb-6">Services & Resources for Fair Operations</h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" id="servicesGrid">
+            </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-navy-700/30 py-12 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 rounded-lg bg-gold-500/20 flex items-center justify-center"><span class="text-gold-400 text-sm">★</span></div>
+            <span class="font-display text-white">Marketing and Sales for Fair</span>
+          </div>
+          <p class="text-navy-400 text-sm leading-relaxed">Transforming fair operations with AI-powered solutions for a safer, more efficient, and unforgettable experience.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Operations</h4>
+          <div class="space-y-2 text-navy-300 text-sm">
+            <a href="#use-cases" class="block hover:text-gold-400 transition-colors">AI Use Cases</a>
+            <a href="#pain-points" class="block hover:text-gold-400 transition-colors">Pain Points</a>
+            <a href="#productivity" class="block hover:text-gold-400 transition-colors">Productivity</a>
+            <a href="#roadmap" class="block hover:text-gold-400 transition-colors">Roadmap</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Resources</h4>
+          <div class="space-y-2 text-navy-300 text-sm">
+            <a href="https://alnationalfair.org" target="_blank" class="block hover:text-gold-400 transition-colors">Official Website ↗</a>
+            <a href="#services" class="block hover:text-gold-400 transition-colors">Services Directory</a>
+            <a href="#toc" class="block hover:text-gold-400 transition-colors">Full Playbook</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Contact</h4>
+          <div class="space-y-2 text-navy-300 text-sm">
+            <p>Garrett Coliseum Complex</p>
+            <p>Montgomery, Marketing and Sales</p>
+            <p class="text-gold-400">AI Solutions Consultant</p>
+          </div>
+        </div>
+      </div>
+      <div class="h-px bg-navy-700/30 mb-6"></div>
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-3 text-navy-500 text-xs">
+        <p>© 2026 Marketing and Sales for Fair — AI Solutions Playbook</p>
+        <p>Prepared February 2026 · Montgomery, AL</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTop" onclick="window.scrollTo({top:0})" class="fixed bottom-6 right-6 z-30 w-12 h-12 rounded-full bg-gold-500/20 border border-gold-500/30 text-gold-400 flex items-center justify-center opacity-0 transition-all duration-300 hover:bg-gold-500/30" style="pointer-events:none;">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7-7-7v18"/></svg>
+  </button>
+
+  <dialog id="infoModal" class="bg-transparent p-0 w-full max-w-2xl backdrop:bg-navy-900/80 backdrop:backdrop-blur-sm fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-2xl outline-none">
+    <div class="section-card rounded-2xl border border-gold-500/20 shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
+      <div class="p-6 sm:p-8">
+        <div class="flex justify-between items-start mb-6">
+          <div class="flex items-center gap-3">
+             <div id="modalIcon" class="text-3xl"></div>
+             <h3 id="modalTitle" class="font-display text-2xl text-white"></h3>
+          </div>
+          <button onclick="closeModal()" class="text-navy-400 hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        
+        <div class="space-y-6">
+          <div class="bg-navy-800/50 p-4 rounded-xl border border-navy-700">
+            <h4 class="text-gold-400 text-xs uppercase tracking-wider font-bold mb-2">The Opportunity</h4>
+            <p id="modalDesc" class="text-navy-100 text-sm leading-relaxed"></p>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+             <div>
+               <h4 class="text-white text-sm font-semibold mb-2">Traditional Method</h4>
+               <p id="modalTrad" class="text-navy-300 text-xs leading-relaxed bg-navy-900/50 p-3 rounded-lg"></p>
+             </div>
+             <div>
+               <h4 class="text-white text-sm font-semibold mb-2">AI-Enhanced Method</h4>
+               <p id="modalAI" class="text-gold-100 text-xs leading-relaxed bg-gold-500/10 border border-gold-500/20 p-3 rounded-lg"></p>
+             </div>
+          </div>
+
+          <div>
+             <h4 class="text-white text-sm font-semibold mb-3">Recommended Tools & Next Steps</h4>
+             <ul id="modalTools" class="space-y-2 text-sm text-navy-200 list-disc pl-4 marker:text-gold-400">
+               </ul>
+          </div>
+
+          <div class="pt-4 border-t border-navy-700/50 flex justify-end">
+             <button onclick="closeModal()" class="btn-gold px-5 py-2 rounded-lg text-sm font-semibold">Close Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+<script>
+// ===========================
+// DATA
+// ===========================
+
+// New Marketing Checklist Data
+const marketingChecklist = [
+  {
+    id: "sponsorship",
+    task: "Sponsorship Outreach & Decks",
+    icon: "🤝",
+    desc: "Create hyper-personalized sponsorship proposals for local businesses (banks, car dealerships, utilities) using generative AI to tailor pitch decks instantly.",
+    traditional: "Manually editing PowerPoint templates for each prospect; generic stats; taking 3-4 hours per major proposal.",
+    aiEnhanced: "AI scrapes prospect's brand values and recent news; auto-inserts relevant Fair audience overlaps; generates custom visuals; takes 15 mins per deck.",
+    tools: [
+      "Use **ChatGPT/Claude** to research prospect's community goals.",
+      "Use **Canva Magic Studio** or **Gamma** to auto-generate slide decks.",
+      "**Action:** Upload 2025 demographic report to AI and ask it to write a pitch specifically for a local Hyundai dealer."
+    ]
+  },
+  {
+    id: "social-content",
+    task: "Social Media Content Factory",
+    icon: "📱",
+    desc: "Generate a month's worth of engaging captions, polls, and video scripts for TikTok, Instagram, and Facebook to keep the Fair top-of-mind year-round.",
+    traditional: "Struggling to write captions daily; running out of ideas; posting sporadically during off-season.",
+    aiEnhanced: "AI generates a 30-day content calendar with hashtags, optimal posting times, and image prompts based on trending audio/topics.",
+    tools: [
+      "Use **ChatGPT** to generate a 4-week 'Countdown to Fair' calendar.",
+      "Use **CapCut AI** to auto-edit raw video footage into Reels/TikToks.",
+      "**Action:** Ask AI for '10 viral video ideas for a state fair featuring livestock and carnival food'."
+    ]
+  },
+  {
+    id: "ad-optimization",
+    task: "Real-Time Ad Budget Optimization",
+    icon: "📈",
+    desc: "Monitor Facebook and Google Ad performance 24/7 and automatically shift budget to the highest-performing creatives and audiences.",
+    traditional: "Checking ads once a week; wasting money on low-performing ads; guessing which audiences convert.",
+    aiEnhanced: "AI scripts monitor cost-per-click hourly; auto-pause losing ads; shift budget to 'Family Night' promos if they are trending.",
+    tools: [
+      "Use **Meta Automated Rules** to kill ads with high CPC.",
+      "Use **Google Performance Max** for cross-channel optimization.",
+      "**Action:** Set up a rule to increase budget by 20% on rainy days for indoor exhibit ads."
+    ]
+  },
+  {
+    id: "email-marketing",
+    task: "Segmented Email Campaigns",
+    icon: "📧",
+    desc: "Personalize email blasts so livestock exhibitors get different content than concert-goers or ride enthusiasts.",
+    traditional: "Sending one 'Blast' email to the entire 50k list; low open rates; high unsubscribe rates.",
+    aiEnhanced: "AI analyzes past purchase behavior to tag users; generates 3 variations of the newsletter (Family, Music, Ag) automatically.",
+    tools: [
+      "Use **Mailchimp/Klaviyo AI** features for 'Smart Segmentation'.",
+      "Use **Subject Line Generators** to A/B test openers.",
+      "**Action:** Segment list into 'Ride Lovers' and 'Ag Supporters' and ask AI to write a subject line for each."
+    ]
+  },
+  {
+    id: "ticket-pricing",
+    task: "Dynamic Ticket Pricing Strategy",
+    icon: "🎟️",
+    desc: "Adjust ticket pricing strategies based on demand forecasts, weather, and competitor events to maximize revenue without losing attendees.",
+    traditional: "Fixed pricing set 6 months ago; panic discounting if attendance is low.",
+    aiEnhanced: "AI analyzes historical data + weather forecast; suggests 'Flash Sale' for Tuesday if rain is predicted to clear up.",
+    tools: [
+      "Use **Excel Data Analysis (Copilot)** to visualize sales vs. weather.",
+      "**Action:** Feed last 5 years of daily attendance + weather data into AI to find price elasticity trends."
+    ]
+  }
+];
+
+const useCaseCategories = [
+  {
+    id: "ops-logistics",
+    icon: "⚙️",
+    title: "Operations & Logistics",
+    description: "Streamline daily operations from crowd management to infrastructure.",
+    items: [
+      { task: "Crowd Flow Management", solution: "AI-powered camera analytics and IoT sensors track real-time foot traffic density across fairgrounds, predicting bottlenecks and suggesting dynamic rerouting via digital signage.", example: "During peak Saturday hours, AI detects congestion near the Midway and triggers digital signage to redirect visitors toward the Agriculture Building exhibits, distributing crowd density evenly.", impact: "Reduces safety incidents by up to 40%; improves visitor flow and satisfaction scores.", tags: ["IoT","Computer Vision","Real-Time"] },
+      { task: "Staff Scheduling & Workforce Optimization", solution: "Machine learning models analyze historical attendance data, weather forecasts, event schedules, and ticket pre-sale velocity to predict optimal staffing levels by zone and shift.", example: "AI recommends adding 12 extra gate attendants for Friday evening based on the country music concert lineup popularity and a clear-weather forecast, while reducing Tuesday morning staff by 8.", impact: "Reduces overtime costs by 20–30%; eliminates understaffing during peak periods.", tags: ["ML Forecasting","Optimization"] },
+      { task: "Vendor & Exhibitor Booth Placement", solution: "AI optimization algorithms determine ideal vendor booth placement based on historical foot traffic patterns, product category synergy, adjacency rules, and revenue potential.", example: "Algorithm places the lemonade vendor near the livestock arena exit where historical data shows visitors are hottest and thirstiest, increasing that vendor's sales by 35%.", impact: "Increases per-vendor revenue; reduces vendor complaints about placement fairness.", tags: ["Optimization","Analytics"] },
+      { task: "Parking & Traffic Management", solution: "Computer vision on lot cameras combined with GPS data estimates lot capacity in real-time, directing vehicles to open areas via dynamic highway signage and push notifications.", example: "AI detects Lot A is 92% full and automatically updates variable message signs on Coliseum Blvd to direct traffic to Lot C with shuttle service information.", impact: "Reduces average parking time from 25 to 8 minutes; decreases road congestion.", tags: ["Computer Vision","IoT","Navigation"] },
+      { task: "Ride & Equipment Predictive Maintenance", solution: "Sensors on amusement rides measure vibration, temperature, load cycles, and hydraulic pressure, feeding AI models that forecast component failures before they occur.", example: "Sensors on the Ferris wheel detect a bearing vibration anomaly 48 hours before projected failure, enabling proactive maintenance during overnight off-hours.", impact: "Reduces unplanned ride downtime by 60%; lowers maintenance costs; improves safety.", tags: ["Predictive AI","IoT","Safety"] },
+      { task: "Utility & Infrastructure Monitoring", solution: "IoT sensors track power draw, water pressure, waste bin levels, and Wi-Fi bandwidth across the fairgrounds, with AI load-balancing and failure prediction.", example: "AI detects generator 3 is running at 94% capacity approaching the evening concert and automatically redistributes load to generator 5, preventing a blackout.", impact: "Prevents infrastructure failures; optimizes resource consumption by 25%.", tags: ["IoT","Predictive AI"] }
+    ]
+  },
+  {
+    id: "vendor-management",
+    icon: "🏪",
+    title: "Vendor & Contractor Management",
+    description: "End-to-end vendor lifecycle from onboarding to settlement.",
+    items: [
+      { task: "Vendor Application & Onboarding", solution: "AI-powered application portal auto-screens vendor applications, verifies insurance and permits, scores applicants based on historical performance, and routes approvals.", example: "A new BBQ vendor submits their application; AI verifies their health permit with ADPH, checks insurance coverage meets $1M minimum, scores their Yelp/Google reviews, and auto-approves within 2 hours.", impact: "Reduces vendor onboarding time from 2 weeks to 48 hours.", tags: ["Automation","Document AI"] },
+      { task: "Compliance & Permit Tracking", solution: "Automated system monitors expiration dates for health permits, fire inspections, ride certifications, and insurance policies, sending escalating reminders.", example: "AI sends automated reminders to 47 vendors whose health permits expire within 30 days, tracks submission status, and flags 3 non-compliant vendors to the Fair Director.", impact: "Achieves 100% compliance at gate opening; eliminates manual tracking of 200+ permits.", tags: ["Automation","Compliance"] },
+      { task: "Vendor Revenue & Settlement", solution: "AI-integrated POS systems track real-time vendor sales, calculate commissions, detect anomalies, and auto-generate settlement reports at fair close.", example: "AI flags that a game booth's reported revenue is 40% below the predicted range for their location and foot traffic, triggering an audit that recovers $3,200 in underreported sales.", impact: "Reduces revenue leakage by 25–35%; accelerates settlement from weeks to days.", tags: ["Analytics","Fraud Detection"] },
+      { task: "Vendor Communication Hub", solution: "AI-powered communication platform provides vendors a single portal for announcements, schedule changes, weather alerts, and support requests with auto-translation.", example: "When a severe weather warning is issued, AI simultaneously sends SMS, email, and app push notifications to all 230 vendors with specific shelter instructions for their zone.", impact: "Eliminates missed communications; supports multilingual vendors.", tags: ["NLP","Automation"] },
+      { task: "Vendor Performance Scoring", solution: "AI aggregates customer reviews, health inspection results, sales data, compliance history, and complaint records into a composite vendor performance score.", example: "After the fair, AI generates performance reports showing the top 20 vendors by score, recommending priority booth selection for next year and flagging 5 vendors for probation.", impact: "Data-driven vendor curation improves overall fair quality year-over-year.", tags: ["Analytics","ML Scoring"] }
+    ]
+  },
+  {
+    id: "guest-experience",
+    icon: "🎡",
+    title: "Guest Experience & Engagement",
+    description: "Personalized, accessible, and delightful experiences for every visitor.",
+    items: [
+      { task: "AI Chatbot & Virtual Concierge", solution: "Multilingual AI chatbot on the Fair website, mobile app, and SMS answers FAQs, provides real-time wait times, gives turn-by-turn navigation, and handles ticket purchases 24/7.", example: "A visitor texts the chatbot asking where to find gluten-free food options and gets an instant map with three highlighted vendors, current wait times, and walking directions from their location.", impact: "Handles 80% of visitor inquiries without staff; improves experience rating by 30%.", tags: ["NLP","Chatbot","24/7"] },
+      { task: "Personalized Visit Recommendations", solution: "AI recommendation engine learns visitor preferences from app behavior, ticket type, demographic data, and past visits to suggest shows, exhibits, food, and activities.", example: "A family that checked in at the petting zoo and kids' rides receives a push notification about the 3pm Junior Livestock Show and a nearby funnel cake stand with a $2-off coupon.", impact: "Increases per-visitor spending by 15–20%; boosts exhibit attendance at undervisited areas.", tags: ["Recommendation AI","Personalization"] },
+      { task: "Wait Time Prediction & Queue Management", solution: "AI uses camera feeds and historical patterns to predict wait times for rides, food vendors, and shows, displaying them on the app and digital signage.", example: "The app shows the Tilt-A-Whirl has a 5-minute wait while the Scrambler is at 25 minutes, and suggests visitors try the Tilt-A-Whirl now and return to the Scrambler after 7pm when waits drop.", impact: "Reduces perceived wait times by 40%; balances ride utilization.", tags: ["Prediction","UX"] },
+      { task: "Accessibility & Inclusion Support", solution: "AI-powered real-time captioning, audio descriptions, wheelchair-accessible route navigation, and sensory overload alerts for visitors with disabilities.", example: "A hearing-impaired visitor uses the Fair app which provides live AI-generated captions of the rodeo announcer and stage show performers directly on their smartphone.", impact: "Expands accessible audience by 15%; ensures ADA compliance; generates positive PR.", tags: ["Accessibility","NLP","Inclusion"] },
+      { task: "Lost & Found / Child Safety", solution: "AI-enabled RFID wristband tracking helps reunite lost children with parents within minutes; opt-in location sharing for families via the Fair app.", example: "A parent reports their 6-year-old missing at Gate 3; the wristband system locates the child at the carousel in under 90 seconds, and security is dispatched with a photo and location.", impact: "Reduces average reunification time from 45 minutes to under 5 minutes.", tags: ["IoT","Safety","Real-Time"] },
+      { task: "Real-Time Feedback & Sentiment", solution: "AI monitors in-app ratings, social media mentions, and kiosk feedback in real-time, alerting operations to emerging issues before they escalate.", example: "AI detects a spike in negative app feedback about restroom cleanliness near Gate 5 at 2pm and auto-dispatches a cleaning crew, resolving the issue within 20 minutes.", impact: "Enables same-day issue resolution; turns negative experiences into positive ones.", tags: ["NLP","Sentiment","Real-Time"] }
+    ]
+  },
+  {
+    id: "revenue-finance",
+    icon: "💰",
+    title: "Revenue & Financial Management",
+    description: "Maximize revenue, control costs, and make data-driven financial decisions.",
+    items: [
+      { task: "Dynamic Ticket Pricing", solution: "AI analyzes demand patterns, weather forecasts, day-of-week trends, local events, and pre-sale velocity to recommend optimal ticket pricing and time-limited promotions.", example: "AI suggests a $5 discount on Tuesday afternoon tickets when the forecast shows 95°F heat, bundled with a free water bottle coupon, boosting weekday attendance by 22%.", impact: "Increases overall ticket revenue 10–15% through demand-responsive pricing.", tags: ["Pricing AI","Revenue"] },
+      { task: "Sponsorship Valuation & Matching", solution: "AI analyzes attendee demographics, dwell-time heatmaps, social media engagement, and brand affinity data to calculate data-backed sponsorship valuations.", example: "AI identifies that the livestock arena attracts 68% of attendees aged 25–45 with household income $75K+, justifying premium pricing for a John Deere activation booth.", impact: "Increases sponsorship revenue 25–40% through transparent, data-backed valuations.", tags: ["Analytics","Valuation"] },
+      { task: "Budget Forecasting & Scenario Planning", solution: "AI models project revenue and expenses across multiple scenarios — optimistic, baseline, and contingency — based on weather, economic indicators, and attendance trends.", example: "AI presents three budget scenarios: a record-attendance year ($4.2M revenue), a baseline ($3.5M), and a rainy-year contingency ($2.8M), each with specific cost adjustment recommendations.", impact: "Reduces budget variance from 15% to under 5%; enables proactive financial decisions.", tags: ["Forecasting","Finance"] },
+      { task: "Cashless Payment Analytics", solution: "AI-integrated cashless payment systems provide real-time revenue dashboards, spending pattern analysis, and anomaly detection across all transaction points.", example: "Real-time dashboard shows that corn dog sales spike 300% during the 7pm rodeo intermission, enabling the Fair to pre-stock inventory and add a temporary point-of-sale station.", impact: "Provides instant financial visibility; reduces cash shrinkage by 30%.", tags: ["Analytics","Real-Time","Fraud Detection"] },
+      { task: "Insurance & Risk Cost Optimization", solution: "AI aggregates historical incident data, weather risk models, and crowd density projections to optimize insurance coverage and negotiate data-backed premiums.", example: "AI demonstrates to the insurer that new crowd management systems reduced incident rates by 40%, negotiating a 15% premium reduction saving $45,000 annually.", impact: "Reduces insurance premiums through demonstrable risk reduction.", tags: ["Risk AI","Optimization"] }
+    ]
+  },
+  {
+    id: "marketing-comms",
+    icon: "📣",
+    title: "Marketing & Communications",
+    description: "AI-driven campaigns, content, and audience engagement.",
+    items: [
+      { task: "Social Media Content Generation", solution: "Generative AI creates daily social media posts, promotional graphics, video scripts, and captions optimized for each platform (Instagram, Facebook, TikTok, X).", example: "AI generates 30 days of pre-Fair content including ride previews, food spotlights, exhibitor profiles, and countdown posts — all auto-scheduled for optimal engagement windows.", impact: "Reduces marketing team workload by 60%; increases social engagement 35%.", tags: ["Generative AI","Content"] },
+      { task: "Targeted Digital Advertising", solution: "AI audience segmentation identifies micro-audiences and creates personalized ad variants across digital channels based on behavior, demographics, and location.", example: "AI identifies that parents aged 30–40 within 60 miles respond best to ride-safety messaging, while college students respond to concert lineup ads — and auto-generates 12 creative variants.", impact: "Reduces cost-per-ticket-sale by 40%; increases digital pre-sales.", tags: ["Ad Tech","Segmentation"] },
+      { task: "Post-Event Sentiment Analysis", solution: "NLP analyzes thousands of social media mentions, survey responses, Google reviews, and online comments to extract actionable themes and net sentiment scores.", example: "AI reveals that 73% of negative sentiment relates to restroom cleanliness and food vendor wait times, while 91% of positive sentiment mentions the livestock shows and new rides.", impact: "Converts qualitative feedback into quantified action items in hours, not weeks.", tags: ["NLP","Analytics"] },
+      { task: "Email & SMS Campaign Automation", solution: "AI segments the Fair's subscriber list and personalizes email/SMS content, send times, and frequency based on individual engagement history and preferences.", example: "Past attendees who visited the concert stage receive personalized emails about this year's lineup with a 'buy now' discount, while livestock enthusiasts get competition schedules.", impact: "Increases email open rates from 18% to 34%; boosts campaign-driven ticket sales.", tags: ["Personalization","Automation"] },
+      { task: "PR & Media Monitoring", solution: "AI monitors local and national media coverage, tracks brand mentions, and auto-generates media summary reports with sentiment analysis and reach estimates.", example: "AI alerts the PR team that a local TV station ran a positive segment about the Fair's new AI safety systems, reaching 180K viewers — and suggests amplifying with a press release.", impact: "Provides real-time PR intelligence; enables rapid response to negative coverage.", tags: ["NLP","Monitoring"] }
+    ]
+  },
+  {
+    id: "safety-security",
+    icon: "🛡️",
+    title: "Safety, Security & Emergency Management",
+    description: "Proactive threat detection, emergency response, and compliance.",
+    items: [
+      { task: "Real-Time Threat Detection", solution: "AI video analytics monitor camera feeds for suspicious behavior, unattended bags, crowd surges, perimeter breaches, and altercations with instant alerts to security teams.", example: "AI flags an unattended backpack near the main stage 4 minutes before a concert starts, alerting security who investigate and clear it before attendees arrive.", impact: "Reduces security response time by 70%; enhances overall safety posture.", tags: ["Computer Vision","Security","Real-Time"] },
+      { task: "Severe Weather Response System", solution: "AI integrates NWS data, private weather services, and on-site atmospheric sensors to provide hyper-local, minute-by-minute severe weather predictions with automated response triggers.", example: "AI detects a fast-moving thunderstorm cell 45 minutes out, auto-triggers PA announcements, activates shelter-in-place signage, pauses ride operations, and sends push notifications to all app users.", impact: "Increases evacuation lead time by 30+ minutes; reduces weather-related injuries.", tags: ["Predictive AI","IoT","Emergency"] },
+      { task: "Health & Food Safety Monitoring", solution: "IoT temperature sensors in food vendor units plus AI analysis of health complaint patterns detect potential foodborne illness outbreaks early.", example: "AI detects three app-reported nausea complaints from visitors who ate at the same food truck within 90 minutes, triggering an immediate health inspection and precautionary vendor pause.", impact: "Prevents potential outbreaks; protects Fair reputation; ensures health code compliance.", tags: ["IoT","Health AI","Pattern Detection"] },
+      { task: "Fire & Structural Safety", solution: "AI analyzes thermal imaging, electrical load data, and structural stress sensors to detect fire risks and structural issues in temporary buildings and stages.", example: "Thermal cameras detect an overheating electrical junction box in the Exhibit Hall, triggering an alert 2 hours before a potential fire hazard develops.", impact: "Prevents fire incidents; ensures structural safety of temporary installations.", tags: ["IoT","Thermal AI","Safety"] },
+      { task: "Incident Documentation & Reporting", solution: "AI auto-generates incident reports from security radio transcripts, camera footage timestamps, and officer inputs, maintaining a compliance-ready documentation trail.", example: "When a slip-and-fall occurs, AI auto-creates an incident report with timestamp, location, camera clip, weather conditions, and witness statements, ready for insurance within 1 hour.", impact: "Reduces incident documentation time by 80%; creates defensible compliance records.", tags: ["NLP","Automation","Compliance"] }
+    ]
+  },
+  {
+    id: "property-facilities",
+    icon: "🏗️",
+    title: "Property & Facilities Management",
+    description: "Maintaining fairgrounds infrastructure, grounds, and facilities.",
+    items: [
+      { task: "Grounds & Restroom Maintenance Scheduling", solution: "AI uses foot traffic data, time-of-day patterns, and real-time sensor data to dynamically schedule cleaning crews and predict supply replenishment needs.", example: "IoT sensors in restrooms near the food court detect soap dispensers at 20% capacity and paper towel bins near full at 1pm, auto-dispatching a crew before the afternoon rush.", impact: "Maintains facility quality during peak hours; reduces complaints by 50%.", tags: ["IoT","Scheduling","Automation"] },
+      { task: "Waste Management Optimization", solution: "Smart waste bins with fill-level sensors feed AI routing algorithms that optimize collection truck routes, reducing unnecessary trips and preventing overflow.", example: "AI reroutes the waste collection truck to skip 60%-full bins on the north side and prioritize overflowing bins near the food vendors, reducing collection time by 35%.", impact: "Prevents overflowing trash; reduces waste collection costs by 30%.", tags: ["IoT","Route Optimization"] },
+      { task: "Temporary Structure Setup Planning", solution: "AI optimizes the setup and teardown schedule for tents, stages, fencing, and temporary structures based on crew availability, weather windows, and dependency chains.", example: "AI generates a 5-day setup schedule that accounts for a forecasted Tuesday rain delay, rearranging the sequence so indoor work continues while outdoor assembly shifts to Wednesday.", impact: "Reduces setup time by 20%; minimizes weather-related delays.", tags: ["Scheduling","Optimization"] },
+      { task: "Energy & Sustainability Management", solution: "AI monitors and optimizes energy consumption across generators, lighting, HVAC, and refrigeration units, identifying waste and recommending efficiency improvements.", example: "AI identifies that 40% of midway lighting is running at full brightness during daylight hours and auto-dims them, saving 1,200 kWh daily and $2,800 over the fair's run.", impact: "Reduces energy costs by 20–30%; supports sustainability goals.", tags: ["IoT","Energy AI","Sustainability"] }
+    ]
+  },
+  {
+    id: "agriculture-competitions",
+    icon: "🐄",
+    title: "Agriculture & Competition Management",
+    description: "Livestock, agricultural exhibits, and competitive events.",
+    items: [
+      { task: "Livestock Judging Assistance", solution: "AI computer vision provides judges with objective body measurements, weight estimates, and historical scoring benchmarks for each animal class as a decision-support tool.", example: "AI provides judges with real-time weight estimates and conformation measurements for the steer class, plus a comparison to last year's champion metrics, reducing scoring inconsistencies.", impact: "Improves judging consistency by 25%; reduces disputes and appeals.", tags: ["Computer Vision","Decision Support"] },
+      { task: "Competition Scheduling & Registration", solution: "AI optimizes competition schedules across multiple arenas, auto-resolves conflicts, manages registrations, and communicates real-time updates to all participants.", example: "AI detects that a 4-H exhibitor is double-booked for sheep showing and baking contests, automatically suggests a time swap with another exhibitor, and notifies both parties.", impact: "Reduces scheduling conflicts by 90%; cuts administrative hours by 50%.", tags: ["Optimization","Automation"] },
+      { task: "Animal Health & Welfare Monitoring", solution: "IoT sensors in livestock barns monitor temperature, humidity, ammonia levels, and water availability, alerting staff to conditions that could stress animals.", example: "Barn sensors detect ammonia levels rising above safe thresholds at 2am, auto-activating ventilation fans and alerting the overnight livestock supervisor.", impact: "Ensures animal welfare compliance; prevents heat stress and illness.", tags: ["IoT","Animal Welfare","Monitoring"] },
+      { task: "Agricultural Education & Exhibits", solution: "AI-powered interactive kiosks and AR experiences educate visitors about farming, crop science, and animal husbandry with personalized content based on visitor age and interests.", example: "A child interacts with an AR exhibit that shows how a cotton seed grows into a finished shirt, with AI adapting the explanation complexity to their age group.", impact: "Increases educational engagement by 60%; modernizes the Fair's agricultural mission.", tags: ["AR/VR","Education AI","Interactive"] }
+    ]
+  },
+  {
+    id: "entertainment-programming",
+    icon: "🎤",
+    title: "Entertainment & Programming",
+    description: "Shows, concerts, acts, and daily programming decisions.",
+    items: [
+      { task: "Act & Talent Booking Analytics", solution: "AI analyzes streaming data, social media following, regional popularity, demographic alignment, and historical fair performance to recommend optimal entertainment bookings.", example: "AI identifies that a rising country artist has 3x the social media engagement in the Montgomery DMA compared to a legacy act — at half the booking fee — recommending them for Friday night.", impact: "Maximizes entertainment ROI; aligns bookings with actual audience demand.", tags: ["Analytics","Recommendation"] },
+      { task: "Show Schedule Optimization", solution: "AI optimizes daily show and event schedules to maximize attendance across all venues, minimize conflicts, and balance crowd flow throughout the fairgrounds.", example: "AI schedules the rodeo and the main stage concert 90 minutes apart to allow crowd transition, while placing a magic show in between to retain visitors in the entertainment zone.", impact: "Increases average shows-attended-per-visitor from 1.8 to 2.7.", tags: ["Optimization","Scheduling"] },
+      { task: "Sound & Lighting Automation", solution: "AI controls sound levels and lighting effects based on crowd size, ambient conditions, and performance type, ensuring optimal experience without manual adjustment.", example: "AI auto-adjusts the main stage PA system volume based on crowd size estimates from camera analytics, maintaining consistent sound quality whether 500 or 5,000 people are present.", impact: "Eliminates sound complaints; reduces technical crew needs by 30%.", tags: ["Automation","IoT"] }
+    ]
+  },
+  {
+    id: "admin-business",
+    icon: "📋",
+    title: "Administration & Business Operations",
+    description: "Back-office functions, HR, legal, and executive decision-making.",
+    items: [
+      { task: "Contract & Legal Document Review", solution: "AI reviews vendor contracts, sponsorship agreements, and insurance policies, flagging non-standard clauses, missing protections, and compliance gaps.", example: "AI reviews 85 vendor contracts in 2 hours, flagging 12 with missing indemnification clauses and 3 with insurance coverage below the Fair's $1M minimum requirement.", impact: "Reduces legal review time by 75%; catches issues before they become liabilities.", tags: ["Document AI","Legal Tech"] },
+      { task: "Board & Committee Reporting", solution: "AI auto-generates executive dashboards, board reports, and committee presentations from operational data, financial systems, and attendance metrics.", example: "AI generates the monthly board report with attendance trends, revenue vs. budget, safety metrics, and vendor performance — formatted and ready for presentation in 15 minutes.", impact: "Saves 20+ hours per month in report preparation; ensures data accuracy.", tags: ["Reporting","Automation"] },
+      { task: "Volunteer Coordination", solution: "AI matches volunteer skills and availability to open positions, manages shift scheduling, sends reminders, and tracks hours for recognition programs.", example: "AI matches a retired teacher volunteer to the educational exhibit booth and a bilingual college student to the guest services desk, optimizing skill-to-role fit across 500+ volunteers.", impact: "Reduces volunteer no-show rate from 25% to 8%; improves volunteer satisfaction.", tags: ["Matching AI","Scheduling"] },
+      { task: "Historical Data & Knowledge Management", solution: "AI creates a searchable knowledge base from years of operational decisions, incident reports, post-event analyses, and lessons learned that persists across staff changes.", example: "A new operations manager asks the AI system 'What went wrong with parking in 2023?' and instantly gets a summary of the issue, the fix implemented, and the outcome.", impact: "Eliminates institutional knowledge loss; reduces onboarding time for new staff by 60%.", tags: ["Knowledge AI","NLP"] },
+      { task: "Procurement & Supply Chain", solution: "AI predicts supply needs (tickets, wristbands, signage, cleaning supplies, etc.) based on attendance forecasts and historical usage, auto-generating purchase orders.", example: "AI predicts 185,000 visitors and auto-generates POs for 200,000 wristbands, 50,000 parking passes, and consumables — with delivery timed to arrive 5 days before opening.", impact: "Prevents stockouts and overorders; reduces procurement costs by 15%.", tags: ["Forecasting","Automation"] }
+    ]
+  }
+];
+
+const painPoints = [
+  { area: "Weather Dependency & Revenue Volatility", icon: "🌧️", severity: "Critical", description: "A single rainy weekend can cost $500K+ in lost revenue. Current contingency planning is reactive, not proactive, and insurance rarely covers attendance shortfalls.", mitigation: "AI weather models provide 72-hour hyper-local forecasts, triggering automated rain-day promotions, indoor event scaling, and dynamic social media campaigns to recover attendance." },
+  { area: "Attendance Unpredictability", icon: "📊", severity: "Critical", description: "Daily attendance can swing 50–70% based on weather, competing events, school schedules, and economic conditions, making staffing, food inventory, and ride operations a daily guessing game.", mitigation: "AI predictive models combine 10+ data sources — weather, social media buzz, pre-sale data, school calendars, local events — to forecast daily attendance within ±10% accuracy." },
+  { area: "Vendor & Contractor Chaos", icon: "📝", severity: "High", description: "Coordinating 200+ vendors with varying compliance requirements, payment schedules, booth allocations, and food safety standards overwhelms small administrative teams.", mitigation: "AI-powered vendor management platform automates onboarding, compliance tracking, communication, and settlement, reducing administrative burden by 70%." },
+  { area: "Safety & Liability Exposure", icon: "⚠️", severity: "Critical", description: "Large crowds, amusement rides, livestock, food service, and temporary structures create a complex liability landscape. One major incident can result in millions in claims.", mitigation: "AI continuous monitoring across rides, crowds, food safety, and weather reduces incident probability. Automated documentation creates a defensible compliance record." },
+  { area: "Revenue Leakage & Cash Handling", icon: "💸", severity: "High", description: "Cash-heavy operations at gates, food vendors, and game booths create opportunities for shrinkage, miscounting, and underreporting, with no real-time visibility.", mitigation: "AI-integrated cashless systems with anomaly detection flag unusual transactions in real-time, reducing shrinkage by 25–35% and providing instant revenue dashboards." },
+  { area: "Marketing ROI Uncertainty", icon: "📡", severity: "Medium", description: "Difficult to measure which marketing channels — TV, radio, social, billboard — actually drive ticket sales vs. general awareness. Budgets are allocated by gut feel.", mitigation: "AI attribution modeling tracks the customer journey from ad impression to ticket purchase, providing clear ROI by channel and enabling real-time budget reallocation." },
+  { area: "Infrastructure Strain & Failures", icon: "🔌", severity: "High", description: "Temporary infrastructure (generators, water, waste, portable restrooms, Wi-Fi) must handle 10,000+ visitors daily for 10+ days. Generator failures, overflowing trash, and Wi-Fi dead zones are common.", mitigation: "IoT sensors with AI monitoring predict infrastructure load, schedule proactive waste collection, and manage power distribution to prevent failures." },
+  { area: "Institutional Knowledge Loss", icon: "🧠", severity: "High", description: "Year-over-year staff and volunteer turnover means hard-won operational knowledge walks out the door. New managers repeat past mistakes without access to lessons learned.", mitigation: "AI knowledge management system captures operational decisions, incident reports, and post-event analysis into a searchable institutional memory that persists across staff changes." },
+  { area: "Communication Breakdown During Events", icon: "📻", severity: "High", description: "Coordinating real-time information across security, operations, entertainment, vendors, medical, and public-facing staff during a live 10-day event leads to missed messages and dangerous delays.", mitigation: "AI-powered communication hub aggregates all channels, prioritizes urgent messages, auto-routes requests to the right team, and ensures accountability with read receipts." },
+  { area: "Post-Event Analysis Paralysis", icon: "📉", severity: "Medium", description: "After closing, teams are exhausted and data is scattered across spreadsheets, vendor reports, email chains, and paper forms. Meaningful analysis rarely happens before next year's planning begins.", mitigation: "AI automatically aggregates all operational, financial, and guest experience data into a comprehensive post-event dashboard with actionable recommendations within one week." },
+  { area: "ADA Compliance & Accessibility Gaps", icon: "♿", severity: "High", description: "Ensuring full accessibility across a sprawling temporary venue for visitors with mobility, hearing, visual, and cognitive disabilities is complex and often falls short.", mitigation: "AI-powered accessible navigation, real-time captioning, sensory-friendly alerts, and wheelchair-accessible route planning ensure comprehensive ADA compliance." },
+  { area: "Food Inventory Waste & Stockouts", icon: "🍖", severity: "Medium", description: "Food vendors either run out of popular items early or waste 20–30% of perishable inventory. No predictive system connects attendance forecasts to vendor supply needs.", mitigation: "AI shares attendance predictions with food vendors and suggests optimal inventory levels by item based on historical consumption patterns and weather forecasts." },
+  { area: "Parking Nightmare & Traffic Gridlock", icon: "🚗", severity: "High", description: "Peak-hour parking creates 30–45 minute delays, traffic backs up onto public roads, frustrated visitors leave negative reviews, and some turn around before entering.", mitigation: "AI parking management with real-time lot capacity, dynamic signage, app-based navigation, and shuttle coordination reduces average parking time to under 10 minutes." },
+  { area: "Volunteer No-Shows & Mismatches", icon: "🙋", severity: "Medium", description: "25%+ volunteer no-show rates and poor skill-to-role matching result in understaffed positions, burned-out coordinators, and inconsistent guest experiences.", mitigation: "AI volunteer management matches skills to roles, sends automated reminders and confirmations, predicts no-show risk, and identifies backup volunteers proactively." },
+  { area: "Ride Downtime & Guest Frustration", icon: "🎢", severity: "High", description: "Unplanned ride breakdowns during peak hours create long lines at remaining rides, safety concerns, refund demands, and social media complaints.", mitigation: "Predictive maintenance AI uses sensor data to forecast ride issues 24–48 hours in advance, enabling overnight repairs and maintaining maximum ride availability during operating hours." }
+];
+
+const productivityItems = [
+  { title: "AI Meeting Notes & Action Items", desc: "Automatically transcribes planning meetings, extracts action items, assigns owners, and tracks completion.", icon: "📝", link: "#" },
+  { title: "Automated Email Drafting & Response", desc: "AI drafts vendor communications, sponsor follow-ups, and visitor inquiries in the Fair's brand voice.", icon: "✉️", link: "#" },
+  { title: "Financial Reconciliation", desc: "AI auto-reconciles daily gate receipts, vendor commissions, and sponsor payments against bank statements.", icon: "🧮", link: "#" },
+  { title: "Document Generation & Templates", desc: "AI generates contracts, vendor agreements, press releases, and board reports from templates with auto-populated data.", icon: "📄", link: "#" },
+  { title: "Data Visualization & Dashboards", desc: "AI creates real-time visual dashboards for attendance, revenue, safety, and operations accessible from any device.", icon: "📊", link: "#" },
+  { title: "Multilingual Communication", desc: "AI translates signage, vendor instructions, safety information, and visitor communications into Spanish, Vietnamese, and other languages.", icon: "🌐", link: "#" },
+  { title: "Task & Project Management", desc: "AI prioritizes daily task lists for each department based on urgency, dependencies, weather changes, and resource availability.", icon: "✅", link: "#" },
+  { title: "Training & Onboarding Content", desc: "AI generates role-specific training materials, quizzes, and onboarding checklists for seasonal staff and volunteers.", icon: "🎓", link: "#" }
+];
+
+const roadmapPhases = [
+  {
+    phase: "Phase 1", title: "Quick Wins", timeline: "0–6 Months", cost: "$25K–$50K", color: "gold",
+    items: [
+      "Deploy AI chatbot on website, app, and social channels",
+      "Implement social media content generation and scheduling",
+      "Launch predictive attendance modeling with weather integration",
+      "Automate vendor compliance tracking and permit management",
+      "Set up AI-powered email and communication automation",
+      "Create AI knowledge base from historical Fair data"
+    ]
+  },
+  {
+    phase: "Phase 2", title: "Operational Intelligence", timeline: "6–12 Months", cost: "$75K–$150K", color: "rust",
+    items: [
+      "Install IoT sensors for crowd flow and infrastructure monitoring",
+      "Implement AI-optimized staff and volunteer scheduling",
+      "Deploy dynamic ticket pricing engine",
+      "Launch AI parking management with real-time guidance",
+      "Integrate cashless payment analytics and anomaly detection",
+      "Build real-time operations dashboard for all departments"
+    ]
+  },
+  {
+    phase: "Phase 3", title: "Smart Fair Platform", timeline: "12–24 Months", cost: "$150K–$300K", color: "sage",
+    items: [
+      "Full predictive maintenance system for all rides and equipment",
+      "Integrated AI security monitoring with automated response protocols",
+      "Personalized visitor experience engine with recommendations",
+      "AI-powered sponsorship valuation and matching platform",
+      "Comprehensive post-event analytics with AI-generated insights",
+      "AR/VR agricultural education experiences"
+    ]
+  }
+];
+
+const services = [
+  { name: "Marketing and Sales for Fair", desc: "Official website, tickets, schedules, and visitor information", url: "https://alnationalfair.org", icon: "🎪" },
+  { name: "AL Dept. of Agriculture", desc: "State agricultural programs, livestock regulations, and permits", url: "https://agi.Marketing and Sales.gov", icon: "🌾" },
+  { name: "Montgomery Convention & Visitors", desc: "Tourism resources, hotel partnerships, and regional promotion", url: "https://www.visitingmontgomery.com", icon: "🏨" },
+  { name: "IAFE (Int'l Assoc. of Fairs)", desc: "Industry best practices, training, and fair management resources", url: "https://www.fairsandexpos.com", icon: "🌍" },
+  { name: "AL Dept. of Public Health", desc: "Food vendor health permits, safety inspections, and compliance", url: "https://www.Marketing and Salespublichealth.gov", icon: "🏥" },
+  { name: "OSHA Safety Resources", desc: "Amusement ride safety, crowd management, and workplace compliance", url: "https://www.osha.gov", icon: "🦺" },
+  { name: "ASTM Amusement Ride Standards", desc: "Ride inspection standards, maintenance protocols, and safety certification", url: "https://www.astm.org", icon: "🎡" },
+  { name: "NWS Montgomery", desc: "Local weather forecasts, severe weather alerts, and event planning data", url: "https://www.weather.gov/bmx", icon: "⛅" },
+  { name: "AL Emergency Management Agency", desc: "Emergency response planning, evacuation procedures, and coordination", url: "https://ema.Marketing and Sales.gov", icon: "🚨" }
+];
+
+
+// ===========================
+// RENDER FUNCTIONS
+// ===========================
+
+function renderMarketingChecklist() {
+  const container = document.getElementById('marketingChecklistContainer');
+  container.innerHTML = marketingChecklist.map((item, index) => `
+    <div class="checklist-row p-5 sm:p-6 flex flex-col sm:flex-row gap-5 items-start">
+      <div class="flex items-start gap-4 flex-1">
+        <label class="relative flex items-center p-1 rounded-full cursor-pointer mt-1">
+          <input type="checkbox" class="checkbox-custom">
+        </label>
+        <div>
+          <h4 class="text-white font-semibold text-lg">${item.task}</h4>
+          <p class="text-navy-300 text-sm mt-1 max-w-xl">${item.desc}</p>
+        </div>
+      </div>
+      <button onclick="openModal('${item.id}')" class="btn-outline px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap self-start sm:self-center">
+        View Tactics & Tools
+      </button>
+    </div>
+  `).join('');
+}
+
+function renderTOC() {
+  const grid = document.getElementById('tocGrid');
+  const mobileNav = document.getElementById('mobileTocContent');
+
+  const sections = [
+    { id: 'marketing-checklist', icon: '🚀', title: 'Marketing Checklist', count: marketingChecklist.length, type: 'checklist' },
+    ...useCaseCategories.map(c => ({ id: c.id, icon: c.icon, title: c.title, count: c.items.length, type: 'use-case' })),
+    { id: 'pain-points', icon: '🔥', title: 'Key Pain Points', count: painPoints.length, type: 'pain' },
+    { id: 'productivity', icon: '⚡', title: 'AI Productivity Enhancements', count: productivityItems.length, type: 'productivity' },
+    { id: 'roadmap', icon: '🗺️', title: 'Implementation Roadmap', count: roadmapPhases.length, type: 'roadmap' },
+    { id: 'services', icon: '🔗', title: 'Services & Resources', count: services.length, type: 'services' },
+  ];
+
+  grid.innerHTML = sections.map(s => `
+    <a href="#${s.id}" class="use-case-card rounded-xl p-4 flex items-start gap-3 group cursor-pointer no-underline">
+      <span class="text-2xl mt-0.5">${s.icon}</span>
+      <div class="flex-1 min-w-0">
+        <h3 class="text-white font-semibold text-sm group-hover:text-gold-400 transition-colors truncate">${s.title}</h3>
+        <span class="text-navy-400 text-xs">${s.count} items</span>
+      </div>
+      <svg class="w-4 h-4 text-navy-500 group-hover:text-gold-400 transition-colors mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </a>
+  `).join('');
+
+  mobileNav.innerHTML = sections.map(s => `
+    <a href="#${s.id}" onclick="toggleMobileMenu()" class="toc-link block px-3 py-2.5 rounded-lg text-navy-200 text-sm hover:text-gold-400 transition-all">
+      <span class="mr-2">${s.icon}</span>${s.title}
+    </a>
+  `).join('');
+}
+
+function renderUseCases() {
+  const container = document.getElementById('useCaseSections');
+  container.innerHTML = useCaseCategories.map(cat => `
+    <div id="${cat.id}" class="fade-in">
+      <div class="section-card rounded-2xl overflow-hidden">
+        <div class="p-6 sm:p-8 border-b border-navy-700/30">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-3xl">${cat.icon}</span>
+            <div>
+              <h3 class="font-display text-xl sm:text-2xl text-white">${cat.title}</h3>
+              <p class="text-navy-300 text-sm">${cat.description}</p>
+            </div>
+            <span class="ml-auto hidden sm:inline-flex items-center justify-center w-8 h-8 rounded-full bg-gold-500/10 text-gold-400 text-sm font-semibold">${cat.items.length}</span>
+          </div>
+        </div>
+        <div class="divide-y divide-navy-700/20">
+          ${cat.items.map((item, idx) => `
+            <div class="use-case-item">
+              <button onclick="toggleExpand('${cat.id}-${idx}')" class="w-full text-left p-5 sm:p-6 hover:bg-navy-800/30 transition-colors group">
+                <div class="flex items-start gap-3">
+                  <div class="w-7 h-7 rounded-lg bg-gold-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span class="text-gold-400 text-xs font-mono font-semibold">${String(idx + 1).padStart(2, '0')}</span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h4 class="text-white font-semibold group-hover:text-gold-400 transition-colors">${item.task}</h4>
+                    <div class="flex flex-wrap gap-1.5 mt-2">
+                      ${item.tags.map(t => `<span class="tag-pill text-[10px] px-2 py-0.5 rounded-full">${t}</span>`).join('')}
+                    </div>
+                  </div>
+                  <svg class="w-5 h-5 text-navy-500 group-hover:text-gold-400 transition-all flex-shrink-0 expand-icon" id="icon-${cat.id}-${idx}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+              </button>
+              <div class="expand-content" id="expand-${cat.id}-${idx}">
+                <div class="px-5 sm:px-6 pb-6 pt-0 ml-10">
+                  <div class="space-y-4">
+                    <div>
+                      <h5 class="text-gold-400 text-xs uppercase tracking-wider font-semibold mb-1.5">AI Solution</h5>
+                      <p class="text-navy-200 text-sm leading-relaxed">${item.solution}</p>
+                    </div>
+                    <div class="bg-navy-800/40 rounded-xl p-4 border-l-2 border-gold-500/40">
+                      <h5 class="text-gold-400 text-xs uppercase tracking-wider font-semibold mb-1.5">Example — Marketing and Sales for Fair</h5>
+                      <p class="text-navy-100 text-sm leading-relaxed">${item.example}</p>
+                    </div>
+                    <div>
+                      <h5 class="text-sage-400 text-xs uppercase tracking-wider font-semibold mb-1.5">Business Impact</h5>
+                      <p class="impact-badge inline-block text-sm px-3 py-1.5 rounded-lg">${item.impact}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderPainPoints() {
+  const grid = document.getElementById('painPointsGrid');
+  const severityColors = { Critical: 'bg-red-500/15 text-red-400 border-red-500/30', High: 'bg-orange-500/15 text-orange-400 border-orange-500/30', Medium: 'bg-yellow-500/15 text-yellow-400 border-yellow-500/30' };
+
+  grid.innerHTML = painPoints.map((pp, idx) => `
+    <div class="pain-card rounded-xl p-5 fade-in" style="transition-delay:${idx * 50}ms">
+      <div class="flex items-start justify-between mb-3">
+        <span class="text-2xl">${pp.icon}</span>
+        <span class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full border ${severityColors[pp.severity]}">${pp.severity}</span>
+      </div>
+      <h4 class="text-white font-semibold mb-2 text-sm">${pp.area}</h4>
+      <p class="text-navy-300 text-xs leading-relaxed mb-3">${pp.description}</p>
+      <button onclick="toggleExpand('pain-${idx}')" class="text-gold-400 text-xs font-semibold hover:text-gold-300 transition-colors flex items-center gap-1">
+        <span>AI Solution</span>
+        <svg class="w-3.5 h-3.5 expand-icon transition-transform" id="icon-pain-${idx}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div class="expand-content" id="expand-pain-${idx}">
+        <div class="mt-3 p-3 bg-sage-500/8 border border-sage-500/15 rounded-lg">
+          <p class="text-sage-400 text-xs leading-relaxed">${pp.mitigation}</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderProductivity() {
+  const grid = document.getElementById('productivityGrid');
+  grid.innerHTML = productivityItems.map((item, idx) => `
+    <div class="use-case-card rounded-xl p-5 fade-in flex items-start gap-4" style="transition-delay:${idx * 50}ms">
+      <span class="text-2xl mt-0.5">${item.icon}</span>
+      <div class="flex-1">
+        <h4 class="text-white font-semibold text-sm mb-1">${item.title}</h4>
+        <p class="text-navy-300 text-xs leading-relaxed">${item.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderRoadmap() {
+  const container = document.getElementById('roadmapTimeline');
+  const colorMap = { gold: { bg: 'bg-gold-500/10', border: 'border-gold-500/30', text: 'text-gold-400', dot: 'bg-gold-500', line: 'from-gold-500/40' }, rust: { bg: 'bg-rust-500/10', border: 'border-rust-500/30', text: 'text-rust-400', dot: 'bg-rust-500', line: 'from-rust-500/40' }, sage: { bg: 'bg-sage-500/10', border: 'border-sage-500/30', text: 'text-sage-400', dot: 'bg-sage-500', line: 'from-sage-500/40' } };
+
+  container.innerHTML = roadmapPhases.map((p, idx) => {
+    const c = colorMap[p.color];
+    return `
+      <div class="fade-in relative flex gap-6" style="transition-delay:${idx * 100}ms">
+        <div class="hidden sm:flex flex-col items-center">
+          <div class="w-4 h-4 rounded-full ${c.dot} relative pulse-ring flex-shrink-0"></div>
+          ${idx < roadmapPhases.length - 1 ? `<div class="w-0.5 flex-1 bg-gradient-to-b ${c.line} to-transparent mt-2"></div>` : ''}
+        </div>
+        <div class="flex-1 section-card rounded-2xl p-6 sm:p-8 mb-2">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="${c.bg} ${c.text} border ${c.border} text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full">${p.phase}</span>
+            <h3 class="font-display text-white text-xl">${p.title}</h3>
+          </div>
+          <div class="flex flex-wrap gap-4 mb-5 text-sm">
+            <span class="text-navy-300">⏱ <span class="${c.text} font-medium">${p.timeline}</span></span>
+            <span class="text-navy-300">💰 <span class="${c.text} font-medium">${p.cost}</span></span>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-2">
+            ${p.items.map(item => `
+              <div class="flex items-start gap-2 text-sm">
+                <span class="${c.text} mt-1 flex-shrink-0">▸</span>
+                <span class="text-navy-200">${item}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderServices() {
+  const grid = document.getElementById('servicesGrid');
+  grid.innerHTML = services.map(s => `
+    <a href="${s.url}" target="_blank" rel="noopener" class="use-case-card rounded-xl p-4 flex items-start gap-3 group no-underline">
+      <span class="text-xl mt-0.5">${s.icon}</span>
+      <div class="flex-1 min-w-0">
+        <h4 class="text-white font-semibold text-sm group-hover:text-gold-400 transition-colors">${s.name}</h4>
+        <p class="text-navy-400 text-xs mt-0.5 leading-relaxed">${s.desc}</p>
+      </div>
+      <svg class="w-4 h-4 text-navy-500 group-hover:text-gold-400 transition-colors mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+    </a>
+  `).join('');
+}
+
+
+// ===========================
+// INTERACTIONS
+// ===========================
+
+function toggleExpand(id) {
+  const el = document.getElementById(`expand-${id}`);
+  const icon = document.getElementById(`icon-${id}`);
+  if (el) {
+    el.classList.toggle('open');
+    if (icon) icon.style.transform = el.classList.contains('open') ? 'rotate(180deg)' : '';
+  }
+}
+
+function toggleMobileMenu() {
+  document.getElementById('mobileSidebar').classList.toggle('open');
+}
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    const offset = 80;
+    const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+}
+
+// Modal Functions
+function openModal(id) {
+  const item = marketingChecklist.find(i => i.id === id);
+  if (!item) return;
+
+  document.getElementById('modalIcon').innerText = item.icon;
+  document.getElementById('modalTitle').innerText = item.task;
+  document.getElementById('modalDesc').innerText = item.desc;
+  document.getElementById('modalTrad').innerText = item.traditional;
+  document.getElementById('modalAI').innerText = item.aiEnhanced;
+  
+  const toolsList = document.getElementById('modalTools');
+  toolsList.innerHTML = item.tools.map(tool => {
+    // Basic markdown parsing for bold text
+    const parsed = tool.replace(/\*\*(.*?)\*\*/g, '<span class="text-white font-semibold">$1</span>');
+    return `<li class="leading-relaxed">${parsed}</li>`;
+  }).join('');
+
+  document.getElementById('infoModal').showModal();
+}
+
+function closeModal() {
+  document.getElementById('infoModal').close();
+}
+
+// Close modal when clicking backdrop
+document.getElementById('infoModal').addEventListener('click', (e) => {
+  const rect = e.target.getBoundingClientRect();
+  if (rect.left > e.clientX || rect.right < e.clientX || rect.top > e.clientY || rect.bottom < e.clientY) {
+    closeModal();
+  }
+});
+
+// Sticky header background on scroll
+function handleScroll() {
+  const header = document.getElementById('stickyHeader');
+  const backToTop = document.getElementById('backToTop');
+  const scrollY = window.scrollY;
+
+  if (scrollY > 100) {
+    header.style.background = 'rgba(15,23,36,0.95)';
+    header.style.backdropFilter = 'blur(12px)';
+  } else {
+    header.style.background = 'transparent';
+    header.style.backdropFilter = 'none';
+  }
+
+  if (scrollY > 600) {
+    backToTop.style.opacity = '1';
+    backToTop.style.pointerEvents = 'auto';
+  } else {
+    backToTop.style.opacity = '0';
+    backToTop.style.pointerEvents = 'none';
+  }
+}
+
+// Fade-in on scroll
+function handleFadeIn() {
+  document.querySelectorAll('.fade-in').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 60) {
+      el.classList.add('visible');
+    }
+  });
+}
+
+// Animated counters
+function animateCounters() {
+  document.querySelectorAll('.counter').forEach(counter => {
+    const target = parseInt(counter.dataset.target);
+    const duration = 1500;
+    const start = performance.now();
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      counter.textContent = Math.round(eased * target);
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+// Progress bars
+function animateProgressBars() {
+  document.querySelectorAll('.progress-bar').forEach(bar => {
+    setTimeout(() => {
+      bar.style.width = bar.dataset.width + '%';
+    }, 500);
+  });
+}
+
+
+// ===========================
+// INIT
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+  renderMarketingChecklist(); // Render the new checklist
+  renderTOC();
+  renderUseCases();
+  renderPainPoints();
+  renderProductivity();
+  renderRoadmap();
+  renderServices();
+
+  window.addEventListener('scroll', () => {
+    handleScroll();
+    handleFadeIn();
+  }, { passive: true });
+
+  handleFadeIn();
+  animateCounters();
+  animateProgressBars();
+});
+</script>
+
+</body>
+</html>
