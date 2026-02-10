@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marketing and Sales for Fair — AI Solutions Playbook</title>
+  <title>Zactonics AI Solutions — Fairs or  Events Operations Playbook</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -28,7 +28,114 @@
   </script>
   <style>
     * { scroll-behavior: smooth; }
-    body { font-family: 'Outfit', sans-serif; background: #0f1724; }
+    body { font-family: 'Outfit', sans-serif; background: #0f1724; transition: background 0.4s ease, color 0.4s ease; }
+
+    /* ===== LIGHT MODE ===== */
+    body.light-mode { background: #f5f7fa; color: #1c2638; }
+    body.light-mode .hero-gradient {
+      background: radial-gradient(ellipse at 30% 20%, rgba(247,183,49,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 80%, rgba(212,87,42,0.05) 0%, transparent 50%),
+                  linear-gradient(180deg, #f5f7fa 0%, #e8ecf1 100%) !important;
+    }
+    body.light-mode .section-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,247,250,0.98) 100%) !important;
+      border-color: rgba(28,38,56,0.1) !important;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    body.light-mode .use-case-card {
+      background: linear-gradient(160deg, rgba(255,255,255,0.9) 0%, rgba(245,247,250,0.95) 100%) !important;
+      border-color: rgba(28,38,56,0.08) !important;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    body.light-mode .use-case-card:hover {
+      border-color: rgba(229,158,11,0.4) !important;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 0 0 1px rgba(229,158,11,0.15) !important;
+    }
+    body.light-mode .pain-card {
+      background: linear-gradient(160deg, rgba(255,245,240,0.8) 0%, rgba(255,255,255,0.9) 100%) !important;
+      border-color: rgba(212,87,42,0.15) !important;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    body.light-mode .stat-card {
+      background: linear-gradient(135deg, rgba(247,183,49,0.08) 0%, rgba(255,255,255,0.8) 100%) !important;
+      border-color: rgba(247,183,49,0.2) !important;
+    }
+    body.light-mode .tag-pill {
+      background: rgba(229,158,11,0.1) !important;
+      border-color: rgba(229,158,11,0.25) !important;
+      color: #9a6209 !important;
+    }
+    body.light-mode .impact-badge {
+      background: rgba(74,158,107,0.1) !important;
+      border-color: rgba(74,158,107,0.25) !important;
+      color: #3a7d54 !important;
+    }
+    body.light-mode .btn-outline {
+      border-color: rgba(229,158,11,0.4) !important;
+      color: #9a6209 !important;
+    }
+    body.light-mode .btn-outline:hover {
+      background: rgba(229,158,11,0.08) !important;
+    }
+    body.light-mode .checklist-row { border-bottom-color: rgba(28,38,56,0.08) !important; }
+    body.light-mode .checklist-row:hover { background: rgba(247,183,49,0.04) !important; }
+    body.light-mode dialog::backdrop { background: rgba(245,247,250,0.85); }
+    body.light-mode .text-white { color: #1c2638 !important; }
+    body.light-mode .text-navy-100 { color: #2d3a52 !important; }
+    body.light-mode .text-navy-200 { color: #3e4f6f !important; }
+    body.light-mode .text-navy-300 { color: #516690 !important; }
+    body.light-mode .text-navy-400 { color: #7b8eb5 !important; }
+    body.light-mode .text-navy-500 { color: #9fb3c8 !important; }
+    body.light-mode .text-gold-400 { color: #c47f07 !important; }
+    body.light-mode .text-gold-300 { color: #9a6209 !important; }
+    body.light-mode .text-gold-100 { color: #7d4f10 !important; }
+    body.light-mode .text-rust-400 { color: #b5441e !important; }
+    body.light-mode .text-sage-400 { color: #3a7d54 !important; }
+    body.light-mode .bg-navy-800\/50, body.light-mode [class*="bg-navy-800/50"] { background-color: rgba(232,236,241,0.5) !important; }
+    body.light-mode .bg-navy-900\/50, body.light-mode [class*="bg-navy-900/50"] { background-color: rgba(245,247,250,0.5) !important; }
+    body.light-mode .bg-navy-800\/40, body.light-mode [class*="bg-navy-800/40"] { background-color: rgba(232,236,241,0.4) !important; }
+    body.light-mode .bg-navy-800\/30, body.light-mode [class*="bg-navy-800/30"] { background-color: rgba(232,236,241,0.3) !important; }
+    body.light-mode .border-navy-700\/50 { border-color: rgba(188,204,220,0.5) !important; }
+    body.light-mode .border-navy-700\/30 { border-color: rgba(188,204,220,0.3) !important; }
+    body.light-mode .border-navy-700 { border-color: #d9e2ec !important; }
+    body.light-mode .divide-navy-700\/30 > * + * { border-color: rgba(188,204,220,0.3) !important; }
+    body.light-mode .divide-navy-700\/20 > * + * { border-color: rgba(188,204,220,0.2) !important; }
+    body.light-mode .bg-navy-800 { background-color: #e8ecf1 !important; }
+    body.light-mode .bg-navy-900 { background-color: #f5f7fa !important; }
+    body.light-mode .toc-link:hover, body.light-mode .toc-link.active {
+      background: rgba(229,158,11,0.06) !important;
+      color: #9a6209 !important;
+    }
+    body.light-mode footer { border-top-color: rgba(188,204,220,0.3) !important; }
+    body.light-mode ::-webkit-scrollbar-track { background: #f5f7fa; }
+    body.light-mode ::-webkit-scrollbar-thumb { background: #bcccdc; }
+    body.light-mode ::-webkit-scrollbar-thumb:hover { background: #9fb3c8; }
+    body.light-mode #backToTop { background: rgba(229,158,11,0.15) !important; border-color: rgba(229,158,11,0.3) !important; color: #9a6209 !important; }
+    body.light-mode .checkbox-custom { border-color: #bcccdc; }
+    body.light-mode .mobile-menu nav { background: #f5f7fa !important; border-color: #d9e2ec !important; }
+    body.light-mode .bg-gold-500\/10 { background-color: rgba(229,158,11,0.1) !important; }
+    body.light-mode .bg-gold-500\/20 { background-color: rgba(229,158,11,0.15) !important; }
+
+    /* Theme toggle */
+    .theme-toggle {
+      width: 52px; height: 28px; border-radius: 14px;
+      background: rgba(159,179,200,0.15); border: 1px solid rgba(159,179,200,0.2);
+      cursor: pointer; transition: all 0.3s ease;
+      display: flex; align-items: center; padding: 0 3px; flex-shrink: 0;
+    }
+    .theme-toggle:hover { border-color: rgba(247,183,49,0.4); }
+    .theme-toggle-thumb {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: linear-gradient(135deg, #1c2638, #2d3a52);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+    body.light-mode .theme-toggle { background: rgba(28,38,56,0.08); border-color: rgba(28,38,56,0.15); }
+    body.light-mode .theme-toggle-thumb {
+      transform: translateX(24px);
+      background: linear-gradient(135deg, #f7b731, #e59e0b);
+    }
 
     /* Grain overlay */
     body::before {
@@ -246,15 +353,21 @@
         <button onclick="toggleMobileMenu()" class="lg:hidden text-navy-300 hover:text-gold-400 p-1">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-gold-500/20 flex items-center justify-center">
-            <span class="text-gold-400 text-sm">★</span>
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-gold-500/30 to-gold-500/10 flex items-center justify-center border border-gold-500/20">
+            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
-          <span class="font-display text-white text-sm sm:text-base hidden sm:block">Marketing and Sales for Fair</span>
+          <div class="hidden sm:block">
+            <span class="font-display text-white text-sm sm:text-base leading-none block">Zactonics AI Solutions</span>
+            <span class="text-gold-400 text-[10px] sm:text-xs font-medium tracking-wide leading-none mt-0.5 block">Free Try Before You Invest</span>
+          </div>
         </div>
       </div>
       <div class="flex items-center gap-2 sm:gap-3">
-        <button onclick="scrollToSection('marketing-checklist')" class="btn-outline text-xs sm:text-sm px-3 py-1.5 rounded-lg font-medium">Marketing Tools</button>
+        <button onclick="toggleTheme()" class="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle theme">
+          <div class="theme-toggle-thumb"><span class="theme-icon">🌙</span></div>
+        </button>
+        <button onclick="scrollToSection('marketing-checklist')" class="btn-outline text-xs sm:text-sm px-3 py-1.5 rounded-lg font-medium hidden sm:inline-flex">Marketing Tools</button>
         <button onclick="scrollToSection('roadmap')" class="btn-gold text-xs sm:text-sm px-3 py-1.5 rounded-lg font-semibold">Get Started</button>
       </div>
     </div>
@@ -270,17 +383,22 @@
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 mb-6">
             <span class="w-2 h-2 rounded-full bg-gold-400 relative pulse-ring"></span>
-            <span class="text-gold-300 text-xs sm:text-sm font-medium tracking-wide uppercase">AI-Powered Fair Operations</span>
+            <span class="text-gold-300 text-xs sm:text-sm font-medium tracking-wide uppercase">Zactonics AI Solutions</span>
           </div>
 
-          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.1] mb-6">
-            Marketing and Sales<br>
-            <span class="text-gold-400">For Fair</span><br>
-            <span class="text-navy-300 text-3xl sm:text-4xl lg:text-5xl">AI Solutions Playbook</span>
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.1] mb-4">
+            Zactonics<br>
+            <span class="text-gold-400">AI Solutions</span><br>
+            <span class="text-navy-300 text-3xl sm:text-4xl lg:text-5xl">Fairs or  Events Operations Playbook</span>
           </h1>
 
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-sage-500/10 border border-sage-500/20 mb-5">
+            <svg class="w-4 h-4 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-sage-400 text-sm font-semibold">Free Try Before You Invest Options Available</span>
+          </div>
+
           <p class="text-navy-200 text-base sm:text-lg leading-relaxed max-w-xl mb-8">
-            A comprehensive guide to transforming fair management with artificial intelligence — from vendor operations and guest experience to safety, revenue optimization, and agricultural competitions in Montgomery, Marketing and Sales.
+            A comprehensive guide to transforming Fairs or  Eventsmanagement with artificial intelligence — from vendor operations and guest experience to safety, revenue optimization, and agricultural competitions in Montgomery. <strong class="text-gold-400">Start free, scale when ready.</strong>
           </p>
 
           <div class="flex flex-wrap gap-3 mb-10">
@@ -384,7 +502,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="fade-in">
         <h2 class="font-display text-3xl sm:text-4xl text-white mb-2">Table of Contents</h2>
-        <p class="text-navy-300 mb-10 max-w-2xl">Navigate the complete AI solutions playbook for every aspect of fair operations.</p>
+        <p class="text-navy-300 mb-10 max-w-2xl">Navigate the complete AI solutions playbook for every aspect of Fairs or  Events Operations.</p>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" id="tocGrid">
           </div>
@@ -401,8 +519,8 @@
           <span class="text-gold-400 text-xs uppercase tracking-[0.2em] font-semibold">AI Use Cases</span>
           <div class="h-px flex-1 bg-gradient-to-l from-gold-500/40 to-transparent"></div>
         </div>
-        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white text-center mb-4">AI-Powered Fair Operations</h2>
-        <p class="text-navy-300 text-center max-w-3xl mx-auto mb-12">Comprehensive AI solutions organized by operational department, each with practical examples for the Marketing and Sales for Fair context.</p>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white text-center mb-4">AI-Powered Fairs or  Events Operations</h2>
+        <p class="text-navy-300 text-center max-w-3xl mx-auto mb-12">Comprehensive AI solutions organized by operational department, each with practical examples for the Marketing and Sales for Fairs or  Eventscontext.</p>
       </div>
 
       <div id="useCaseSections" class="space-y-12">
@@ -417,7 +535,7 @@
           <div class="h-px flex-1 bg-gradient-to-l from-rust-500/40 to-transparent"></div>
         </div>
         <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white text-center mb-4">Key Pain Points</h2>
-        <p class="text-navy-300 text-center max-w-3xl mx-auto mb-12">The most pressing operational challenges facing fair administrators — and how AI directly addresses each one.</p>
+        <p class="text-navy-300 text-center max-w-3xl mx-auto mb-12">The most pressing operational challenges facing Fairs or  Eventsadministrators — and how AI directly addresses each one.</p>
       </div>
 
       <div id="painPointsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -457,7 +575,7 @@
     <section id="services" class="py-16 sm:py-24">
       <div class="fade-in">
         <div class="section-card rounded-2xl p-8 sm:p-12">
-          <h2 class="font-display text-2xl sm:text-3xl text-white mb-6">Services & Resources for Fair Operations</h2>
+          <h2 class="font-display text-2xl sm:text-3xl text-white mb-6">Services & Resources for Fairs or  Events Operations</h2>
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" id="servicesGrid">
             </div>
         </div>
@@ -471,10 +589,12 @@
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
         <div>
           <div class="flex items-center gap-2 mb-4">
-            <div class="w-8 h-8 rounded-lg bg-gold-500/20 flex items-center justify-center"><span class="text-gold-400 text-sm">★</span></div>
-            <span class="font-display text-white">Marketing and Sales for Fair</span>
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-gold-500/30 to-gold-500/10 flex items-center justify-center border border-gold-500/20">
+              <svg class="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <span class="font-display text-white">Zactonics AI Solutions</span>
           </div>
-          <p class="text-navy-400 text-sm leading-relaxed">Transforming fair operations with AI-powered solutions for a safer, more efficient, and unforgettable experience.</p>
+          <p class="text-navy-400 text-sm leading-relaxed">Transforming Fairs or  Events Operations with AI-powered solutions for a safer, more efficient, and unforgettable experience. Free try before you invest.</p>
         </div>
         <div>
           <h4 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Operations</h4>
@@ -504,7 +624,7 @@
       </div>
       <div class="h-px bg-navy-700/30 mb-6"></div>
       <div class="flex flex-col sm:flex-row justify-between items-center gap-3 text-navy-500 text-xs">
-        <p>© 2026 Marketing and Sales for Fair — AI Solutions Playbook</p>
+        <p>© 2026 Zactonics AI Solutions — Fairs or  Events Operations Playbook</p>
         <p>Prepared February 2026 · Montgomery, AL</p>
       </div>
     </div>
@@ -571,7 +691,7 @@ const marketingChecklist = [
     icon: "🤝",
     desc: "Create hyper-personalized sponsorship proposals for local businesses (banks, car dealerships, utilities) using generative AI to tailor pitch decks instantly.",
     traditional: "Manually editing PowerPoint templates for each prospect; generic stats; taking 3-4 hours per major proposal.",
-    aiEnhanced: "AI scrapes prospect's brand values and recent news; auto-inserts relevant Fair audience overlaps; generates custom visuals; takes 15 mins per deck.",
+    aiEnhanced: "AI scrapes prospect's brand values and recent news; auto-inserts relevant Fairs or  Eventsaudience overlaps; generates custom visuals; takes 15 mins per deck.",
     tools: [
       "Use **ChatGPT/Claude** to research prospect's community goals.",
       "Use **Canva Magic Studio** or **Gamma** to auto-generate slide decks.",
@@ -582,13 +702,13 @@ const marketingChecklist = [
     id: "social-content",
     task: "Social Media Content Factory",
     icon: "📱",
-    desc: "Generate a month's worth of engaging captions, polls, and video scripts for TikTok, Instagram, and Facebook to keep the Fair top-of-mind year-round.",
+    desc: "Generate a month's worth of engaging captions, polls, and video scripts for TikTok, Instagram, and Facebook to keep the Fairs or  Eventstop-of-mind year-round.",
     traditional: "Struggling to write captions daily; running out of ideas; posting sporadically during off-season.",
     aiEnhanced: "AI generates a 30-day content calendar with hashtags, optimal posting times, and image prompts based on trending audio/topics.",
     tools: [
       "Use **ChatGPT** to generate a 4-week 'Countdown to Fair' calendar.",
       "Use **CapCut AI** to auto-edit raw video footage into Reels/TikToks.",
-      "**Action:** Ask AI for '10 viral video ideas for a state fair featuring livestock and carnival food'."
+      "**Action:** Ask AI for '10 viral video ideas for a state Fairs or  Eventsfeaturing livestock and carnival food'."
     ]
   },
   {
@@ -653,10 +773,10 @@ const useCaseCategories = [
     description: "End-to-end vendor lifecycle from onboarding to settlement.",
     items: [
       { task: "Vendor Application & Onboarding", solution: "AI-powered application portal auto-screens vendor applications, verifies insurance and permits, scores applicants based on historical performance, and routes approvals.", example: "A new BBQ vendor submits their application; AI verifies their health permit with ADPH, checks insurance coverage meets $1M minimum, scores their Yelp/Google reviews, and auto-approves within 2 hours.", impact: "Reduces vendor onboarding time from 2 weeks to 48 hours.", tags: ["Automation","Document AI"] },
-      { task: "Compliance & Permit Tracking", solution: "Automated system monitors expiration dates for health permits, fire inspections, ride certifications, and insurance policies, sending escalating reminders.", example: "AI sends automated reminders to 47 vendors whose health permits expire within 30 days, tracks submission status, and flags 3 non-compliant vendors to the Fair Director.", impact: "Achieves 100% compliance at gate opening; eliminates manual tracking of 200+ permits.", tags: ["Automation","Compliance"] },
-      { task: "Vendor Revenue & Settlement", solution: "AI-integrated POS systems track real-time vendor sales, calculate commissions, detect anomalies, and auto-generate settlement reports at fair close.", example: "AI flags that a game booth's reported revenue is 40% below the predicted range for their location and foot traffic, triggering an audit that recovers $3,200 in underreported sales.", impact: "Reduces revenue leakage by 25–35%; accelerates settlement from weeks to days.", tags: ["Analytics","Fraud Detection"] },
+      { task: "Compliance & Permit Tracking", solution: "Automated system monitors expiration dates for health permits, fire inspections, ride certifications, and insurance policies, sending escalating reminders.", example: "AI sends automated reminders to 47 vendors whose health permits expire within 30 days, tracks submission status, and flags 3 non-compliant vendors to the Fairs or  EventsDirector.", impact: "Achieves 100% compliance at gate opening; eliminates manual tracking of 200+ permits.", tags: ["Automation","Compliance"] },
+      { task: "Vendor Revenue & Settlement", solution: "AI-integrated POS systems track real-time vendor sales, calculate commissions, detect anomalies, and auto-generate settlement reports at Fairs or  Eventsclose.", example: "AI flags that a game booth's reported revenue is 40% below the predicted range for their location and foot traffic, triggering an audit that recovers $3,200 in underreported sales.", impact: "Reduces revenue leakage by 25–35%; accelerates settlement from weeks to days.", tags: ["Analytics","Fraud Detection"] },
       { task: "Vendor Communication Hub", solution: "AI-powered communication platform provides vendors a single portal for announcements, schedule changes, weather alerts, and support requests with auto-translation.", example: "When a severe weather warning is issued, AI simultaneously sends SMS, email, and app push notifications to all 230 vendors with specific shelter instructions for their zone.", impact: "Eliminates missed communications; supports multilingual vendors.", tags: ["NLP","Automation"] },
-      { task: "Vendor Performance Scoring", solution: "AI aggregates customer reviews, health inspection results, sales data, compliance history, and complaint records into a composite vendor performance score.", example: "After the fair, AI generates performance reports showing the top 20 vendors by score, recommending priority booth selection for next year and flagging 5 vendors for probation.", impact: "Data-driven vendor curation improves overall fair quality year-over-year.", tags: ["Analytics","ML Scoring"] }
+      { task: "Vendor Performance Scoring", solution: "AI aggregates customer reviews, health inspection results, sales data, compliance history, and complaint records into a composite vendor performance score.", example: "After the fair, AI generates performance reports showing the top 20 vendors by score, recommending priority booth selection for next year and flagging 5 vendors for probation.", impact: "Data-driven vendor curation improves overall Fairs or  Eventsquality year-over-year.", tags: ["Analytics","ML Scoring"] }
     ]
   },
   {
@@ -665,11 +785,11 @@ const useCaseCategories = [
     title: "Guest Experience & Engagement",
     description: "Personalized, accessible, and delightful experiences for every visitor.",
     items: [
-      { task: "AI Chatbot & Virtual Concierge", solution: "Multilingual AI chatbot on the Fair website, mobile app, and SMS answers FAQs, provides real-time wait times, gives turn-by-turn navigation, and handles ticket purchases 24/7.", example: "A visitor texts the chatbot asking where to find gluten-free food options and gets an instant map with three highlighted vendors, current wait times, and walking directions from their location.", impact: "Handles 80% of visitor inquiries without staff; improves experience rating by 30%.", tags: ["NLP","Chatbot","24/7"] },
+      { task: "AI Chatbot & Virtual Concierge", solution: "Multilingual AI chatbot on the Fairs or  Eventswebsite, mobile app, and SMS answers FAQs, provides real-time wait times, gives turn-by-turn navigation, and handles ticket purchases 24/7.", example: "A visitor texts the chatbot asking where to find gluten-free food options and gets an instant map with three highlighted vendors, current wait times, and walking directions from their location.", impact: "Handles 80% of visitor inquiries without staff; improves experience rating by 30%.", tags: ["NLP","Chatbot","24/7"] },
       { task: "Personalized Visit Recommendations", solution: "AI recommendation engine learns visitor preferences from app behavior, ticket type, demographic data, and past visits to suggest shows, exhibits, food, and activities.", example: "A family that checked in at the petting zoo and kids' rides receives a push notification about the 3pm Junior Livestock Show and a nearby funnel cake stand with a $2-off coupon.", impact: "Increases per-visitor spending by 15–20%; boosts exhibit attendance at undervisited areas.", tags: ["Recommendation AI","Personalization"] },
       { task: "Wait Time Prediction & Queue Management", solution: "AI uses camera feeds and historical patterns to predict wait times for rides, food vendors, and shows, displaying them on the app and digital signage.", example: "The app shows the Tilt-A-Whirl has a 5-minute wait while the Scrambler is at 25 minutes, and suggests visitors try the Tilt-A-Whirl now and return to the Scrambler after 7pm when waits drop.", impact: "Reduces perceived wait times by 40%; balances ride utilization.", tags: ["Prediction","UX"] },
-      { task: "Accessibility & Inclusion Support", solution: "AI-powered real-time captioning, audio descriptions, wheelchair-accessible route navigation, and sensory overload alerts for visitors with disabilities.", example: "A hearing-impaired visitor uses the Fair app which provides live AI-generated captions of the rodeo announcer and stage show performers directly on their smartphone.", impact: "Expands accessible audience by 15%; ensures ADA compliance; generates positive PR.", tags: ["Accessibility","NLP","Inclusion"] },
-      { task: "Lost & Found / Child Safety", solution: "AI-enabled RFID wristband tracking helps reunite lost children with parents within minutes; opt-in location sharing for families via the Fair app.", example: "A parent reports their 6-year-old missing at Gate 3; the wristband system locates the child at the carousel in under 90 seconds, and security is dispatched with a photo and location.", impact: "Reduces average reunification time from 45 minutes to under 5 minutes.", tags: ["IoT","Safety","Real-Time"] },
+      { task: "Accessibility & Inclusion Support", solution: "AI-powered real-time captioning, audio descriptions, wheelchair-accessible route navigation, and sensory overload alerts for visitors with disabilities.", example: "A hearing-impaired visitor uses the Fairs or  Eventsapp which provides live AI-generated captions of the rodeo announcer and stage show performers directly on their smartphone.", impact: "Expands accessible audience by 15%; ensures ADA compliance; generates positive PR.", tags: ["Accessibility","NLP","Inclusion"] },
+      { task: "Lost & Found / Child Safety", solution: "AI-enabled RFID wristband tracking helps reunite lost children with parents within minutes; opt-in location sharing for families via the Fairs or  Eventsapp.", example: "A parent reports their 6-year-old missing at Gate 3; the wristband system locates the child at the carousel in under 90 seconds, and security is dispatched with a photo and location.", impact: "Reduces average reunification time from 45 minutes to under 5 minutes.", tags: ["IoT","Safety","Real-Time"] },
       { task: "Real-Time Feedback & Sentiment", solution: "AI monitors in-app ratings, social media mentions, and kiosk feedback in real-time, alerting operations to emerging issues before they escalate.", example: "AI detects a spike in negative app feedback about restroom cleanliness near Gate 5 at 2pm and auto-dispatches a cleaning crew, resolving the issue within 20 minutes.", impact: "Enables same-day issue resolution; turns negative experiences into positive ones.", tags: ["NLP","Sentiment","Real-Time"] }
     ]
   },
@@ -682,7 +802,7 @@ const useCaseCategories = [
       { task: "Dynamic Ticket Pricing", solution: "AI analyzes demand patterns, weather forecasts, day-of-week trends, local events, and pre-sale velocity to recommend optimal ticket pricing and time-limited promotions.", example: "AI suggests a $5 discount on Tuesday afternoon tickets when the forecast shows 95°F heat, bundled with a free water bottle coupon, boosting weekday attendance by 22%.", impact: "Increases overall ticket revenue 10–15% through demand-responsive pricing.", tags: ["Pricing AI","Revenue"] },
       { task: "Sponsorship Valuation & Matching", solution: "AI analyzes attendee demographics, dwell-time heatmaps, social media engagement, and brand affinity data to calculate data-backed sponsorship valuations.", example: "AI identifies that the livestock arena attracts 68% of attendees aged 25–45 with household income $75K+, justifying premium pricing for a John Deere activation booth.", impact: "Increases sponsorship revenue 25–40% through transparent, data-backed valuations.", tags: ["Analytics","Valuation"] },
       { task: "Budget Forecasting & Scenario Planning", solution: "AI models project revenue and expenses across multiple scenarios — optimistic, baseline, and contingency — based on weather, economic indicators, and attendance trends.", example: "AI presents three budget scenarios: a record-attendance year ($4.2M revenue), a baseline ($3.5M), and a rainy-year contingency ($2.8M), each with specific cost adjustment recommendations.", impact: "Reduces budget variance from 15% to under 5%; enables proactive financial decisions.", tags: ["Forecasting","Finance"] },
-      { task: "Cashless Payment Analytics", solution: "AI-integrated cashless payment systems provide real-time revenue dashboards, spending pattern analysis, and anomaly detection across all transaction points.", example: "Real-time dashboard shows that corn dog sales spike 300% during the 7pm rodeo intermission, enabling the Fair to pre-stock inventory and add a temporary point-of-sale station.", impact: "Provides instant financial visibility; reduces cash shrinkage by 30%.", tags: ["Analytics","Real-Time","Fraud Detection"] },
+      { task: "Cashless Payment Analytics", solution: "AI-integrated cashless payment systems provide real-time revenue dashboards, spending pattern analysis, and anomaly detection across all transaction points.", example: "Real-time dashboard shows that corn dog sales spike 300% during the 7pm rodeo intermission, enabling the Fairs or  Eventsto pre-stock inventory and add a temporary point-of-sale station.", impact: "Provides instant financial visibility; reduces cash shrinkage by 30%.", tags: ["Analytics","Real-Time","Fraud Detection"] },
       { task: "Insurance & Risk Cost Optimization", solution: "AI aggregates historical incident data, weather risk models, and crowd density projections to optimize insurance coverage and negotiate data-backed premiums.", example: "AI demonstrates to the insurer that new crowd management systems reduced incident rates by 40%, negotiating a 15% premium reduction saving $45,000 annually.", impact: "Reduces insurance premiums through demonstrable risk reduction.", tags: ["Risk AI","Optimization"] }
     ]
   },
@@ -692,7 +812,7 @@ const useCaseCategories = [
     title: "Marketing & Communications",
     description: "AI-driven campaigns, content, and audience engagement.",
     items: [
-      { task: "Social Media Content Generation", solution: "Generative AI creates daily social media posts, promotional graphics, video scripts, and captions optimized for each platform (Instagram, Facebook, TikTok, X).", example: "AI generates 30 days of pre-Fair content including ride previews, food spotlights, exhibitor profiles, and countdown posts — all auto-scheduled for optimal engagement windows.", impact: "Reduces marketing team workload by 60%; increases social engagement 35%.", tags: ["Generative AI","Content"] },
+      { task: "Social Media Content Generation", solution: "Generative AI creates daily social media posts, promotional graphics, video scripts, and captions optimized for each platform (Instagram, Facebook, TikTok, X).", example: "AI generates 30 days of pre-Fairs or  Eventscontent including ride previews, food spotlights, exhibitor profiles, and countdown posts — all auto-scheduled for optimal engagement windows.", impact: "Reduces marketing team workload by 60%; increases social engagement 35%.", tags: ["Generative AI","Content"] },
       { task: "Targeted Digital Advertising", solution: "AI audience segmentation identifies micro-audiences and creates personalized ad variants across digital channels based on behavior, demographics, and location.", example: "AI identifies that parents aged 30–40 within 60 miles respond best to ride-safety messaging, while college students respond to concert lineup ads — and auto-generates 12 creative variants.", impact: "Reduces cost-per-ticket-sale by 40%; increases digital pre-sales.", tags: ["Ad Tech","Segmentation"] },
       { task: "Post-Event Sentiment Analysis", solution: "NLP analyzes thousands of social media mentions, survey responses, Google reviews, and online comments to extract actionable themes and net sentiment scores.", example: "AI reveals that 73% of negative sentiment relates to restroom cleanliness and food vendor wait times, while 91% of positive sentiment mentions the livestock shows and new rides.", impact: "Converts qualitative feedback into quantified action items in hours, not weeks.", tags: ["NLP","Analytics"] },
       { task: "Email & SMS Campaign Automation", solution: "AI segments the Fair's subscriber list and personalizes email/SMS content, send times, and frequency based on individual engagement history and preferences.", example: "Past attendees who visited the concert stage receive personalized emails about this year's lineup with a 'buy now' discount, while livestock enthusiasts get competition schedules.", impact: "Increases email open rates from 18% to 34%; boosts campaign-driven ticket sales.", tags: ["Personalization","Automation"] },
@@ -707,7 +827,7 @@ const useCaseCategories = [
     items: [
       { task: "Real-Time Threat Detection", solution: "AI video analytics monitor camera feeds for suspicious behavior, unattended bags, crowd surges, perimeter breaches, and altercations with instant alerts to security teams.", example: "AI flags an unattended backpack near the main stage 4 minutes before a concert starts, alerting security who investigate and clear it before attendees arrive.", impact: "Reduces security response time by 70%; enhances overall safety posture.", tags: ["Computer Vision","Security","Real-Time"] },
       { task: "Severe Weather Response System", solution: "AI integrates NWS data, private weather services, and on-site atmospheric sensors to provide hyper-local, minute-by-minute severe weather predictions with automated response triggers.", example: "AI detects a fast-moving thunderstorm cell 45 minutes out, auto-triggers PA announcements, activates shelter-in-place signage, pauses ride operations, and sends push notifications to all app users.", impact: "Increases evacuation lead time by 30+ minutes; reduces weather-related injuries.", tags: ["Predictive AI","IoT","Emergency"] },
-      { task: "Health & Food Safety Monitoring", solution: "IoT temperature sensors in food vendor units plus AI analysis of health complaint patterns detect potential foodborne illness outbreaks early.", example: "AI detects three app-reported nausea complaints from visitors who ate at the same food truck within 90 minutes, triggering an immediate health inspection and precautionary vendor pause.", impact: "Prevents potential outbreaks; protects Fair reputation; ensures health code compliance.", tags: ["IoT","Health AI","Pattern Detection"] },
+      { task: "Health & Food Safety Monitoring", solution: "IoT temperature sensors in food vendor units plus AI analysis of health complaint patterns detect potential foodborne illness outbreaks early.", example: "AI detects three app-reported nausea complaints from visitors who ate at the same food truck within 90 minutes, triggering an immediate health inspection and precautionary vendor pause.", impact: "Prevents potential outbreaks; protects Fairs or  Eventsreputation; ensures health code compliance.", tags: ["IoT","Health AI","Pattern Detection"] },
       { task: "Fire & Structural Safety", solution: "AI analyzes thermal imaging, electrical load data, and structural stress sensors to detect fire risks and structural issues in temporary buildings and stages.", example: "Thermal cameras detect an overheating electrical junction box in the Exhibit Hall, triggering an alert 2 hours before a potential fire hazard develops.", impact: "Prevents fire incidents; ensures structural safety of temporary installations.", tags: ["IoT","Thermal AI","Safety"] },
       { task: "Incident Documentation & Reporting", solution: "AI auto-generates incident reports from security radio transcripts, camera footage timestamps, and officer inputs, maintaining a compliance-ready documentation trail.", example: "When a slip-and-fall occurs, AI auto-creates an incident report with timestamp, location, camera clip, weather conditions, and witness statements, ready for insurance within 1 hour.", impact: "Reduces incident documentation time by 80%; creates defensible compliance records.", tags: ["NLP","Automation","Compliance"] }
     ]
@@ -742,7 +862,7 @@ const useCaseCategories = [
     title: "Entertainment & Programming",
     description: "Shows, concerts, acts, and daily programming decisions.",
     items: [
-      { task: "Act & Talent Booking Analytics", solution: "AI analyzes streaming data, social media following, regional popularity, demographic alignment, and historical fair performance to recommend optimal entertainment bookings.", example: "AI identifies that a rising country artist has 3x the social media engagement in the Montgomery DMA compared to a legacy act — at half the booking fee — recommending them for Friday night.", impact: "Maximizes entertainment ROI; aligns bookings with actual audience demand.", tags: ["Analytics","Recommendation"] },
+      { task: "Act & Talent Booking Analytics", solution: "AI analyzes streaming data, social media following, regional popularity, demographic alignment, and historical Fairs or  Eventsperformance to recommend optimal entertainment bookings.", example: "AI identifies that a rising country artist has 3x the social media engagement in the Montgomery DMA compared to a legacy act — at half the booking fee — recommending them for Friday night.", impact: "Maximizes entertainment ROI; aligns bookings with actual audience demand.", tags: ["Analytics","Recommendation"] },
       { task: "Show Schedule Optimization", solution: "AI optimizes daily show and event schedules to maximize attendance across all venues, minimize conflicts, and balance crowd flow throughout the fairgrounds.", example: "AI schedules the rodeo and the main stage concert 90 minutes apart to allow crowd transition, while placing a magic show in between to retain visitors in the entertainment zone.", impact: "Increases average shows-attended-per-visitor from 1.8 to 2.7.", tags: ["Optimization","Scheduling"] },
       { task: "Sound & Lighting Automation", solution: "AI controls sound levels and lighting effects based on crowd size, ambient conditions, and performance type, ensuring optimal experience without manual adjustment.", example: "AI auto-adjusts the main stage PA system volume based on crowd size estimates from camera analytics, maintaining consistent sound quality whether 500 or 5,000 people are present.", impact: "Eliminates sound complaints; reduces technical crew needs by 30%.", tags: ["Automation","IoT"] }
     ]
@@ -800,7 +920,7 @@ const roadmapPhases = [
       "Launch predictive attendance modeling with weather integration",
       "Automate vendor compliance tracking and permit management",
       "Set up AI-powered email and communication automation",
-      "Create AI knowledge base from historical Fair data"
+      "Create AI knowledge base from historical Fairs or  Eventsdata"
     ]
   },
   {
@@ -815,7 +935,7 @@ const roadmapPhases = [
     ]
   },
   {
-    phase: "Phase 3", title: "Smart Fair Platform", timeline: "12–24 Months", cost: "$150K–$300K", color: "sage",
+    phase: "Phase 3", title: "Smart Fairs or  EventsPlatform", timeline: "12–24 Months", cost: "$150K–$300K", color: "sage",
     items: [
       "Full predictive maintenance system for all rides and equipment",
       "Integrated AI security monitoring with automated response protocols",
@@ -831,7 +951,7 @@ const services = [
   { name: "Marketing and Sales for Fair", desc: "Official website, tickets, schedules, and visitor information", url: "https://alnationalfair.org", icon: "🎪" },
   { name: "AL Dept. of Agriculture", desc: "State agricultural programs, livestock regulations, and permits", url: "https://agi.Marketing and Sales.gov", icon: "🌾" },
   { name: "Montgomery Convention & Visitors", desc: "Tourism resources, hotel partnerships, and regional promotion", url: "https://www.visitingmontgomery.com", icon: "🏨" },
-  { name: "IAFE (Int'l Assoc. of Fairs)", desc: "Industry best practices, training, and fair management resources", url: "https://www.fairsandexpos.com", icon: "🌍" },
+  { name: "IAFE (Int'l Assoc. of Fairs)", desc: "Industry best practices, training, and Fairs or  Eventsmanagement resources", url: "https://www.fairsandexpos.com", icon: "🌍" },
   { name: "AL Dept. of Public Health", desc: "Food vendor health permits, safety inspections, and compliance", url: "https://www.Marketing and Salespublichealth.gov", icon: "🏥" },
   { name: "OSHA Safety Resources", desc: "Amusement ride safety, crowd management, and workplace compliance", url: "https://www.osha.gov", icon: "🦺" },
   { name: "ASTM Amusement Ride Standards", desc: "Ride inspection standards, maintenance protocols, and safety certification", url: "https://www.astm.org", icon: "🎡" },
@@ -1107,7 +1227,7 @@ function handleScroll() {
   const scrollY = window.scrollY;
 
   if (scrollY > 100) {
-    header.style.background = 'rgba(15,23,36,0.95)';
+    header.style.background = document.body.classList.contains('light-mode') ? 'rgba(245,247,250,0.95)' : 'rgba(15,23,36,0.95)';
     header.style.backdropFilter = 'blur(12px)';
   } else {
     header.style.background = 'transparent';
@@ -1161,9 +1281,31 @@ function animateProgressBars() {
 
 
 // ===========================
+// THEME TOGGLE
+// ===========================
+function toggleTheme() {
+  const body = document.body;
+  body.classList.toggle('light-mode');
+  const isLight = body.classList.contains('light-mode');
+  localStorage.setItem('zactonics-theme', isLight ? 'light' : 'dark');
+  document.querySelector('.theme-icon').textContent = isLight ? '☀️' : '🌙';
+}
+
+function loadTheme() {
+  const saved = localStorage.getItem('zactonics-theme');
+  if (saved === 'light') {
+    document.body.classList.add('light-mode');
+    const icon = document.querySelector('.theme-icon');
+    if (icon) icon.textContent = '☀️';
+  }
+}
+
+
+// ===========================
 // INIT
 // ===========================
 document.addEventListener('DOMContentLoaded', () => {
+  loadTheme();
   renderMarketingChecklist(); // Render the new checklist
   renderTOC();
   renderUseCases();
